@@ -1,0 +1,22 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.DefaultCompany.AdventureInNumberland">
+
+    <application
+        android:label="@string/app_name"
+    	android:icon="@mipmap/app_icon"
+    	tools:replace="android:icon">
+
+        <!-- Main Activity -->
+        <activity android:name="com.unity3d.player.UnityPlayerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- ARCore Metadata -->
+        <meta-data android:name="com.google.ar.core" android:value="required" />
+    </application>
+
+</manifest>

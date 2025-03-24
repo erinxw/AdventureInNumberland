@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/8 Scenes/LandingPageScene.unity
+    guid: b2f4208e27b37dc4096f1343972c4721
+  - enabled: 1
+    path: Assets/8 Scenes/SignupPageScene.unity
+    guid: 2b39fd7514e87ad4f98b45a82e1e389b
+  - enabled: 1
+    path: Assets/8 Scenes/LoginPageScene.unity
+    guid: fcdcaf2f0f12ed64cb0d027b43a29988
+  - enabled: 0
+    path: Assets/Scenes/ModulePageScene.unity
+    guid: 4ec24481e82f7a4499f70b7aa1ef1e72
+  - enabled: 1
+    path: Assets/8 Scenes/ModulesPageScene.unity
+    guid: 9554ee4bb37c44c4dab7c567aabe75e0
+  - enabled: 1
+    path: Assets/8 Scenes/ProfilePageScene.unity
+    guid: 858dab5c229717d409dd550242e84c3d
+  - enabled: 0
+    path: Assets/Scenes/CountingPageScene.unity
+    guid: 3774fb53fba28674797e86cde0f7ee2c
+  - enabled: 1
+    path: Assets/8 Scenes/IntroductionPageScene.unity
+    guid: 887c2976a3a966641be9639e010f9cb0
+  - enabled: 1
+    path: Assets/8 Scenes/IntroductionPageSceneAR.unity
+    guid: 67a86cbd5c9a1b848a93d4edfbe2cfeb
+  - enabled: 0
+    path: Assets/8 Scenes/testar.unity
+    guid: 9aebacda97a03984c89d7adce70c2c7f
+  - enabled: 1
+    path: Assets/8 Scenes/CountingTutorial.unity
+    guid: 855c862d51cbe014d85aefac5771acaf
+  - enabled: 1
+    path: Assets/8 Scenes/Counting AR/CountingOne.unity
+    guid: 00677ccf7450944479a798e15d189dcf
+  - enabled: 1
+    path: Assets/8 Scenes/SettingsPageScene.unity
+    guid: cf2e0c7564805fe4685d30161a5a67d2
+  - enabled: 1
+    path: Assets/8 Scenes/FinishModuleScene.unity
+    guid: fc9965c8d4c84384c9fa6e3528db7914
+  - enabled: 1
+    path: Assets/8 Scenes/Counting Feedback Scenes/CountingOneFeedbackScene.unity
+    guid: 1ea795899cf9b2c48b79d92a8bc2c7f8
+  - enabled: 1
+    path: Assets/8 Scenes/GuardianPasscodePageScene.unity
+    guid: 9545ea5b1e6b18b4485c684d9833f05e
+  - enabled: 0
+    path: Assets/ObjectPlacement.unity
+    guid: e723202d5c2391d42bcd0ad7e710d95d
+  - enabled: 0
+    path: Assets/planeeee.unity
+    guid: 5780994bd8bf1d449851e52a40bf8a5d
+  - enabled: 1
+    path: Assets/8 Scenes/Counting AR/CountingTwo.unity
+    guid: 2ad21c66e5e2ba3498c5a51b00861702
+  - enabled: 1
+    path: Assets/8 Scenes/Counting Feedback Scenes/CountingTwoFeedbackScene.unity
+    guid: f7af36a4debc8c146b5e681885051e18
+  - enabled: 1
+    path: Assets/8 Scenes/Counting AR/CountingThree.unity
+    guid: 31afe8ca7012cf74ab7a230c90e5f6cb
+  - enabled: 1
+    path: Assets/8 Scenes/Counting Feedback Scenes/CountingThreeFeedbackScene.unity
+    guid: 4d53d826db703404a951c48144b38147
+  - enabled: 1
+    path: Assets/8 Scenes/Counting AR/CountingFour.unity
+    guid: bd8fa35aff849024a948b473c046a1c4
+  - enabled: 1
+    path: Assets/8 Scenes/Counting Feedback Scenes/CountingFourFeedbackScene.unity
+    guid: ff4c571134caa0c41b3ca2bbe1ab041f
+  - enabled: 1
+    path: Assets/8 Scenes/Counting Feedback Scenes/CountingFiveFeedbackScene.unity
+    guid: ee78abd75fd56904da1a65d58a6a5eff
+  - enabled: 1
+    path: Assets/8 Scenes/Counting AR/CountingFive.unity
+    guid: d3d213ac2c24f4c4f88a5af636434b78
+  - enabled: 1
+    path: Assets/8 Scenes/IntroductionPageSceneAR.unity
+    guid: 93ca883116ee6644fb04c7800dde6191
+  m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6ee72d15cf39dd748a13eac57397b9af,
+      type: 2}
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 0465d33c6aee55f44b0237db8b0e0259,
+      type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: c199e683398494f32b4cde18e73ab731,
+      type: 2}
+    com.unity.xr.magicleap.magic_leap_settings: {fileID: 11400000, guid: 0b53a025a635a4393ba0b49822242280,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 3fd4fc0127790db4bae83f7b77da8d45,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: b07c4ba7650be4c25b3d0c497e7e2bb8,
+      type: 2}
+  m_UseUCBPForAssetBundles: 0

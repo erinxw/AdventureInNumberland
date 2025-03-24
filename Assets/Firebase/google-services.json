@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "626876052191",
+    "firebase_url": "https://adventure-in-numberland-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "adventure-in-numberland",
+    "storage_bucket": "adventure-in-numberland.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:626876052191:android:40e21f6b1dbd2252c5ef6a",
+        "android_client_info": {
+          "package_name": "com.unity.template.ar_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYg5rA3pp-v1qhH7tbO39d2VMLDuex55Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

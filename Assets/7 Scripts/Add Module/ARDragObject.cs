@@ -1,58 +1,35 @@
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.ARSubsystems;
-using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class ARDragObject : MonoBehaviour
 {
-    private ARRaycastManager arRaycastManager;
-    private Vector2 touchPosition;
+    private Vector3 offset;
     private bool isDragging = false;
+    private Camera arCamera;
 
     void Start()
     {
-        // Find the ARRaycastManager in the scene
-        arRaycastManager = FindObjectOfType<ARRaycastManager>();
+        arCamera = Camera.main;
     }
 
     void Update()
     {
-        if (Input.touchCount == 0)
-            return;
-
-        Touch touch = Input.GetTouch(0);
-        touchPosition = touch.position;
-
-        if (touch.phase == TouchPhase.Began)
+        if (isDragging && Input.touchCount > 0)
         {
-            // Check if the touch hits this object
-            Ray ray = Camera.main.ScreenPointToRay(touch.position);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform == transform)
-                {
-                    isDragging = true;
-                }
-            }
-        }
-        else if (touch.phase == TouchPhase.Moved && isDragging)
-        {
-            MoveObject();
-        }
-        else if (touch.phase == TouchPhase.Ended)
-        {
-            isDragging = false;
+            Touch touch = Input.GetTouch(0);
+            Vector3 touchPosition = arCamera.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, arCamera.transform.position.z + 1f));
+            transform.position = new Vector3(touchPosition.x, touchPosition.y, transform.position.z);
         }
     }
 
-    void MoveObject()
+    void OnMouseDown()
     {
-        List<ARRaycastHit> hits = new List<ARRaycastHit>();
-        if (arRaycastManager.Raycast(touchPosition, hits, TrackableType.PlaneWithinPolygon))
-        {
-            transform.position = hits[0].pose.position;
-        }
+        isDragging = true;
+    }
+
+    void OnMouseUp()
+    {
+        isDragging = false;
     }
 }

@@ -1,82 +1,49 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR.ARFoundation;
-using System.Collections.Generic;
 
 public class ARDragObject : MonoBehaviour
 {
-    private ARRaycastManager raycastManager;
-    private bool isDragging = false;
-    private Vector2 touchStartPos;
-
-    void Start()
-    {
-        raycastManager = FindObjectOfType<ARRaycastManager>();
-
-        if (raycastManager == null)
-        {
-            Debug.LogError("ARRaycastManager is missing! Make sure AR Session Origin has an ARRaycastManager.");
-        }
-
-        if (Camera.main == null)
-        {
-            Debug.LogError("Main Camera is missing! Ensure your scene has a tagged 'MainCamera'.");
-        }
-    }
+    private bool isDragging = false;  // To check if the object is being dragged
+    private Vector2 touchStartPosition;  // Store touch start position
+    private Vector3 objectStartPosition;  // Store object's initial position
+    private Vector3 offset;  // The difference between the object position and touch position
 
     void Update()
     {
-        if (Touchscreen.current == null) return;
-
-        var touch = Touchscreen.current.primaryTouch;
-
-        if (touch.press.isPressed)
+        if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed)
         {
-            Vector2 touchPosition = touch.position.ReadValue();
-
-            if (!isDragging)
-            {
-                HandleInput(touchPosition);
-            }
-            else
-            {
-                MoveObject(touchPosition);
-            }
-        }
-        else
-        {
-            isDragging = false;
+            Vector2 touchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
+            HandleInput(touchPosition);
         }
     }
 
     void HandleInput(Vector2 screenPosition)
     {
-        if (Camera.main == null) return;
-
         Ray ray = Camera.main.ScreenPointToRay(screenPosition);
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
         {
-            if (hit.transform == transform) // Check if tapped object is this object
+            if (hit.transform == transform)
             {
-                isDragging = true;
-                Debug.Log("Dragging started on: " + gameObject.name);
+                DragApple(screenPosition, hit);
             }
         }
     }
 
-    void MoveObject(Vector2 screenPosition)
+    void DragApple(Vector2 touchPosition, RaycastHit hit)
     {
-        if (raycastManager == null) return;
+        if (!isDragging)
+        {
+            isDragging = true;
+            touchStartPosition = touchPosition;
+            objectStartPosition = transform.position;
+            offset = objectStartPosition - hit.point;
+        }
 
-        List<ARRaycastHit> hits = new List<ARRaycastHit>();
-        if (raycastManager.Raycast(screenPosition, hits, UnityEngine.XR.ARSubsystems.TrackableType.Planes))
-        {
-            transform.position = hits[0].pose.position;
-            Debug.Log("Object moved to: " + transform.position);
-        }
-        else
-        {
-            Debug.LogWarning("Raycast did not hit any AR plane.");
-        }
+        // Calculate the new position based on the offset and touch movement
+        Vector3 newWorldPosition = hit.point + offset;
+        transform.position = newWorldPosition;
+
+        Debug.Log("Dragging to: " + newWorldPosition);
     }
 }

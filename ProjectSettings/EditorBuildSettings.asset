@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/8 Scenes/dragtest.unity
+    guid: 9452e41c07537814f80df19cd1e2c610
+  - enabled: 1
     path: Assets/8 Scenes/LandingPageScene.unity
     guid: b2f4208e27b37dc4096f1343972c4721
   - enabled: 1
@@ -29,9 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/8 Scenes/IntroductionPageScene.unity
     guid: 887c2976a3a966641be9639e010f9cb0
-  - enabled: 1
+  - enabled: 0
     path: Assets/8 Scenes/IntroductionPageSceneAR.unity
-    guid: 67a86cbd5c9a1b848a93d4edfbe2cfeb
+    guid: 93ca883116ee6644fb04c7800dde6191
   - enabled: 0
     path: Assets/8 Scenes/testar.unity
     guid: 9aebacda97a03984c89d7adce70c2c7f
@@ -86,6 +89,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/8 Scenes/IntroductionPageSceneAR.unity
     guid: 93ca883116ee6644fb04c7800dde6191
+  - enabled: 0
+    path: Assets/8 Scenes/AdditionActivities/Add1.unity
+    guid: 62ee010f9a88e6046a3bdb0609f76a39
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6ee72d15cf39dd748a13eac57397b9af,
       type: 2}

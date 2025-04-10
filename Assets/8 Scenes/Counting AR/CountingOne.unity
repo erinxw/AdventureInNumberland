@@ -638,7 +638,7 @@ PrefabInstance:
     - target: {fileID: 5168652223247465421, guid: 01e03a107c2d6094792151555926bdc7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8059315084818394294, guid: 01e03a107c2d6094792151555926bdc7,
         type: 3}
@@ -1422,6 +1422,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: LunaDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 425f2bf4686104941a9c1251849e9f6e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

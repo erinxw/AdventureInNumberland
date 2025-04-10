@@ -2,12 +2,23 @@ using UnityEngine;
 
 public class CollectionArea : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        if (other.CompareTag("Draggable"))
+        Debug.Log("CollectionArea script initialized.");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Object entered collection area: " + other.gameObject.name);
+
+        if (other.CompareTag("FoodItem"))
         {
-            Debug.Log("Object Collected!");
-            other.gameObject.SetActive(false); // Hide object upon collection
+            Debug.Log("Collected: " + other.gameObject.name);
+            other.gameObject.SetActive(false); // Hide the object when collected
+        }
+        else
+        {
+            Debug.Log("Object is not collectible.");
         }
     }
 }

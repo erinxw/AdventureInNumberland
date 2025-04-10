@@ -1,0 +1,54 @@
+{
+    "name": "XRInputActions",
+    "maps": [
+        {
+            "name": "New action map",
+            "id": "142c1c5a-1ccc-48c1-b3d4-57285f4914d6",
+            "actions": [
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "f7ba0dc0-fc69-4c3c-84fc-23e89a9baef2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Position",
+                    "type": "Value",
+                    "id": "38b24c03-0b4c-4e26-93a3-44637a8f2511",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1c1191f6-a07a-444d-adc6-2c5a1d0a7d1a",
+                    "path": "*/{PrimaryTouch}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8b951398-7a79-44f7-9d91-bc2210e4c403",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

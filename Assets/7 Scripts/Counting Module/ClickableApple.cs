@@ -27,11 +27,6 @@ public class ClickableApple : MonoBehaviour
             Vector2 touchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
             HandleInput(touchPosition);
         }
-        else if (Mouse.current.leftButton.wasPressedThisFrame) // More efficient for mouse input
-        {
-            Vector2 mousePosition = Mouse.current.position.ReadValue();
-            HandleInput(mousePosition);
-        }
     }
 
     void HandleInput(Vector2 screenPosition)

@@ -3,47 +3,69 @@ using UnityEngine.InputSystem;
 
 public class ARDragObject : MonoBehaviour
 {
-    private bool isDragging = false;  // To check if the object is being dragged
-    private Vector2 touchStartPosition;  // Store touch start position
-    private Vector3 objectStartPosition;  // Store object's initial position
-    private Vector3 offset;  // The difference between the object position and touch position
+    private bool isDragging = false;
+    private Vector3 offset;
+    private Camera cam;
+
+    public GameObject basketApple;      // Assign this in inspector: the preset apple in basket
+    public LayerMask basketLayer;       // Assign in inspector
+    private bool hasDropped = false;    // To prevent double dropping
+
+    void Start()
+    {
+        cam = Camera.main;
+    }
 
     void Update()
     {
-        if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed)
-        {
-            Vector2 touchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
-            HandleInput(touchPosition);
-        }
-    }
+        if (Touchscreen.current == null || hasDropped) return;
 
-    void HandleInput(Vector2 screenPosition)
-    {
-        Ray ray = Camera.main.ScreenPointToRay(screenPosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        var touch = Touchscreen.current.primaryTouch;
+
+        if (touch.press.wasPressedThisFrame)
         {
-            if (hit.transform == transform)
+            Ray ray = cam.ScreenPointToRay(touch.position.ReadValue());
+            if (Physics.Raycast(ray, out RaycastHit hit) && hit.transform == transform)
             {
-                DragApple(screenPosition, hit);
+                offset = transform.position - hit.point;
+                isDragging = true;
+            }
+        }
+        else if (touch.press.isPressed && isDragging)
+        {
+            Ray ray = cam.ScreenPointToRay(touch.position.ReadValue());
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                transform.position = hit.point + offset;
+            }
+        }
+        else if (touch.press.wasReleasedThisFrame && isDragging)
+        {
+            isDragging = false;
+
+            // Check for drop on basket
+            Ray ray = cam.ScreenPointToRay(touch.position.ReadValue());
+            if (Physics.Raycast(ray, out RaycastHit hit, 100f, basketLayer))
+            {
+                if (hit.collider.CompareTag("Basket"))
+                {
+                    DropIntoBasket();
+                }
             }
         }
     }
 
-    void DragApple(Vector2 touchPosition, RaycastHit hit)
+    void DropIntoBasket()
     {
-        if (!isDragging)
+        hasDropped = true;
+
+        // Show basket apple
+        if (basketApple != null)
         {
-            isDragging = true;
-            touchStartPosition = touchPosition;
-            objectStartPosition = transform.position;
-            offset = objectStartPosition - hit.point;
+            basketApple.SetActive(true);
         }
 
-        // Calculate the new position based on the offset and touch movement
-        Vector3 newWorldPosition = hit.point + offset;
-        transform.position = newWorldPosition;
-
-        Debug.Log("Dragging to: " + newWorldPosition);
+        // Hide dragged apple
+        gameObject.SetActive(false);
     }
 }

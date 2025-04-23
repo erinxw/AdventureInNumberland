@@ -7,10 +7,6 @@ public class ARDragObject : MonoBehaviour
     private Vector3 offset;
     private Camera cam;
 
-    public GameObject basketApple;      // Assign this in inspector: the preset apple in basket
-    public LayerMask basketLayer;       // Assign in inspector
-    private bool hasDropped = false;    // To prevent double dropping
-
     void Start()
     {
         cam = Camera.main;
@@ -18,7 +14,7 @@ public class ARDragObject : MonoBehaviour
 
     void Update()
     {
-        if (Touchscreen.current == null || hasDropped) return;
+        if (Touchscreen.current == null) return;
 
         var touch = Touchscreen.current.primaryTouch;
 
@@ -42,30 +38,6 @@ public class ARDragObject : MonoBehaviour
         else if (touch.press.wasReleasedThisFrame && isDragging)
         {
             isDragging = false;
-
-            // Check for drop on basket
-            Ray ray = cam.ScreenPointToRay(touch.position.ReadValue());
-            if (Physics.Raycast(ray, out RaycastHit hit, 100f, basketLayer))
-            {
-                if (hit.collider.CompareTag("Basket"))
-                {
-                    DropIntoBasket();
-                }
-            }
         }
-    }
-
-    void DropIntoBasket()
-    {
-        hasDropped = true;
-
-        // Show basket apple
-        if (basketApple != null)
-        {
-            basketApple.SetActive(true);
-        }
-
-        // Hide dragged apple
-        gameObject.SetActive(false);
     }
 }

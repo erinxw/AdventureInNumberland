@@ -3,7 +3,7 @@ using UnityEngine;
 public class ItemSnapToBasket : MonoBehaviour
 {
     public GameObject snapPointObject; // Drag it in the Inspector
-
+    public BasketManager basketManager;
     private static int totalSnapped = 0;
     private static int totalItems;
 
@@ -20,6 +20,7 @@ public class ItemSnapToBasket : MonoBehaviour
     {
         if (other.CompareTag("Basket"))
         {
+            basketManager.ItemCollected();
             Debug.Log("Item collected: " + gameObject.name);
             gameObject.SetActive(false); // Hide the item
 

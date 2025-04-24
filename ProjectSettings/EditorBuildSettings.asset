@@ -35,7 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/8 Scenes/IntroductionPageScene.unity
     guid: 887c2976a3a966641be9639e010f9cb0
-  - enabled: 0
+  - enabled: 1
     path: Assets/8 Scenes/IntroductionPageSceneAR.unity
     guid: 93ca883116ee6644fb04c7800dde6191
   - enabled: 0
@@ -98,6 +98,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/8 Scenes/AdditionActivities/addtest.unity
     guid: cd82cde4b8a6e4a4fa81302749317ffb
+  - enabled: 1
+    path: Assets/8 Scenes/AnswerFeedbackPages/CorrectFeedbackScene.unity
+    guid: bf6466a97b51145499f671c5248928d4
+  - enabled: 1
+    path: Assets/8 Scenes/AnswerFeedbackPages/WrongFeedbackScene.unity
+    guid: d69374116385d9648b677acb78f4dca2
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6ee72d15cf39dd748a13eac57397b9af,
       type: 2}

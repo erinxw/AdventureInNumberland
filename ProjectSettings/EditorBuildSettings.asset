@@ -96,7 +96,7 @@ EditorBuildSettings:
     path: Assets/8 Scenes/AdditionActivities/Add1.unity
     guid: 62ee010f9a88e6046a3bdb0609f76a39
   - enabled: 1
-    path: Assets/8 Scenes/AdditionActivities/addtest.unity
+    path: Assets/8 Scenes/AdditionActivities/Add1.unity
     guid: cd82cde4b8a6e4a4fa81302749317ffb
   - enabled: 1
     path: Assets/8 Scenes/AnswerFeedbackPages/CorrectFeedbackScene.unity

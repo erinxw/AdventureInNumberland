@@ -11,6 +11,12 @@ public class BasketManager : MonoBehaviour
     private int currentAudioIndex = 0;
     private bool isPlayingAudio = false;
 
+    void Start()
+    {
+        animator.ResetTrigger("ShowChoices");
+        animator.Play("Idle");
+    }
+
     public void ItemCollected()
     {
         itemsCollected++;

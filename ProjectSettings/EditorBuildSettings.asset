@@ -93,17 +93,17 @@ EditorBuildSettings:
     path: Assets/8 Scenes/IntroductionPageSceneAR.unity
     guid: 93ca883116ee6644fb04c7800dde6191
   - enabled: 1
-    path: Assets/8 Scenes/AdditionActivities/Add1.unity
-    guid: 62ee010f9a88e6046a3bdb0609f76a39
-  - enabled: 1
-    path: Assets/8 Scenes/AdditionActivities/Add1.unity
-    guid: cd82cde4b8a6e4a4fa81302749317ffb
-  - enabled: 1
     path: Assets/8 Scenes/AnswerFeedbackPages/CorrectFeedbackScene.unity
     guid: bf6466a97b51145499f671c5248928d4
   - enabled: 1
     path: Assets/8 Scenes/AnswerFeedbackPages/WrongFeedbackScene.unity
     guid: d69374116385d9648b677acb78f4dca2
+  - enabled: 1
+    path: Assets/8 Scenes/AdditionActivities/Add2.unity
+    guid: 1c2f0edb2efb14f43bbaeaa062e00506
+  - enabled: 1
+    path: Assets/8 Scenes/AdditionActivities/Add1.unity
+    guid: cd82cde4b8a6e4a4fa81302749317ffb
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6ee72d15cf39dd748a13eac57397b9af,
       type: 2}

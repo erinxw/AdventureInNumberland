@@ -93,10 +93,10 @@ EditorBuildSettings:
     path: Assets/8 Scenes/IntroductionPageSceneAR.unity
     guid: 93ca883116ee6644fb04c7800dde6191
   - enabled: 1
-    path: Assets/8 Scenes/AnswerFeedbackPages/CorrectFeedbackScene.unity
+    path: Assets/8 Scenes/AnswerFeedbackPages/CorrectFeedbackScene5.unity
     guid: bf6466a97b51145499f671c5248928d4
   - enabled: 1
-    path: Assets/8 Scenes/AnswerFeedbackPages/WrongFeedbackScene.unity
+    path: Assets/8 Scenes/AnswerFeedbackPages/WrongFeedbackScene5.unity
     guid: d69374116385d9648b677acb78f4dca2
   - enabled: 1
     path: Assets/8 Scenes/AdditionActivities/Add2.unity

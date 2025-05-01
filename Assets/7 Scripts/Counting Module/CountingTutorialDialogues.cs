@@ -3,19 +3,20 @@ using System.Collections;
 
 public class CountingTutorialDialogues : MonoBehaviour
 {
-    public Animator talkingAnimator; // Animator for talking animation
-    public Animator tutorialAnimator; // Animator for tutorial animation
-    public GameObject tutorialObject; // Object that appears in second audio
-    public AudioSource[] audioSources; // Array of 3 AudioSources (from separate objects)
-    public float silenceThreshold = 0.02f;
-    public float checkInterval = 0.1f;
+    public Animator talkingAnimator;         // Luna's Animator
+    public Animator tutorialAnimator;        // Animator for tutorial animation
+    public GameObject tutorialObject;        // Object that appears in second audio
+    public AudioSource[] audioSources;       // Array of 3 AudioSources
+    public float silenceThreshold = 0.02f;   // Volume threshold to detect silence
+    public float checkInterval = 0.1f;       // How often to check for silence
 
     private int currentAudioIndex = 0;
     private bool isPaused = false;
 
     void Start()
     {
-        tutorialObject.SetActive(false); // Hide tutorial object at start
+        tutorialObject.SetActive(false);             // Hide tutorial at start
+        talkingAnimator.gameObject.SetActive(false); // Hide Luna at start
         PlayNextDialogue();
     }
 
@@ -24,9 +25,19 @@ public class CountingTutorialDialogues : MonoBehaviour
         if (currentAudioIndex < audioSources.Length)
         {
             audioSources[currentAudioIndex].Play();
-            talkingAnimator.speed = 1; // Start talking animation
 
-            // Show tutorial animation only on second audio (index 1)
+            // Show Luna (talking animation) only for audio index 0 and 2
+            if (currentAudioIndex == 0 || currentAudioIndex == 2)
+            {
+                talkingAnimator.gameObject.SetActive(true);
+                talkingAnimator.speed = 1;
+            }
+            else
+            {
+                talkingAnimator.gameObject.SetActive(false);
+            }
+
+            // Show tutorial animation only for audio index 1
             if (currentAudioIndex == 1)
             {
                 tutorialObject.SetActive(true);
@@ -49,19 +60,17 @@ public class CountingTutorialDialogues : MonoBehaviour
             currentAudioSource.GetOutputData(samples, 0);
             float volume = GetAverageVolume(samples);
 
-            if (volume < silenceThreshold)
+            // Pause/resume talking animation based on volume
+            if (talkingAnimator.gameObject.activeInHierarchy)
             {
-                if (!isPaused)
+                if (volume < silenceThreshold && !isPaused)
                 {
-                    talkingAnimator.speed = 0; // Pause talking animation on silence
+                    talkingAnimator.speed = 0;
                     isPaused = true;
                 }
-            }
-            else
-            {
-                if (isPaused)
+                else if (volume >= silenceThreshold && isPaused)
                 {
-                    talkingAnimator.speed = 1; // Resume talking animation when voice resumes
+                    talkingAnimator.speed = 1;
                     isPaused = false;
                 }
             }
@@ -69,16 +78,20 @@ public class CountingTutorialDialogues : MonoBehaviour
             yield return new WaitForSeconds(checkInterval);
         }
 
-        talkingAnimator.speed = 0; // Stop animation when audio ends
+        // Reset animation and move to next dialogue
+        if (talkingAnimator.gameObject.activeInHierarchy)
+            talkingAnimator.speed = 0;
+
         currentAudioIndex++;
 
         if (currentAudioIndex < audioSources.Length)
         {
-            PlayNextDialogue(); // Play the next audio
+            PlayNextDialogue();
         }
         else
         {
-            tutorialObject.SetActive(false); // Hide tutorial object after all audios finish
+            tutorialObject.SetActive(false);
+            talkingAnimator.gameObject.SetActive(false);
         }
     }
 

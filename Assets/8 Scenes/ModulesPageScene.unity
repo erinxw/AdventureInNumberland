@@ -479,7 +479,7 @@ PrefabInstance:
     - target: {fileID: 1782629354151130216, guid: 46cdbfb34879c9949996f6edae9c5cda,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1782629354151130216, guid: 46cdbfb34879c9949996f6edae9c5cda,
         type: 3}
@@ -505,6 +505,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: AudioManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782629354151130216, guid: 46cdbfb34879c9949996f6edae9c5cda,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Sub1
       objectReference: {fileID: 0}
     - target: {fileID: 1782629354151130216, guid: 46cdbfb34879c9949996f6edae9c5cda,
         type: 3}
@@ -918,7 +923,7 @@ PrefabInstance:
     - target: {fileID: 1782629354151130216, guid: 46cdbfb34879c9949996f6edae9c5cda,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Add1
+      value: AddTutorial
       objectReference: {fileID: 0}
     - target: {fileID: 3911428082423269267, guid: 46cdbfb34879c9949996f6edae9c5cda,
         type: 3}
@@ -1019,6 +1024,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4814954096388099704, guid: 46cdbfb34879c9949996f6edae9c5cda,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Addition
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 6809035685594239053, guid: 46cdbfb34879c9949996f6edae9c5cda,
         type: 3}

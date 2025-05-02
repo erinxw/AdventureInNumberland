@@ -104,6 +104,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/8 Scenes/AdditionActivities/Add1.unity
     guid: cd82cde4b8a6e4a4fa81302749317ffb
+  - enabled: 1
+    path: Assets/8 Scenes/SubtractionActivities/Sub1.unity
+    guid: 68c0a3311fe50764095c054440d1ddad
+  - enabled: 1
+    path: Assets/8 Scenes/AdditionActivities/AddTutorial.unity
+    guid: d614f14d44ffceb41967bfc91666083d
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6ee72d15cf39dd748a13eac57397b9af,
       type: 2}

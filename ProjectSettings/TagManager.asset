@@ -9,6 +9,7 @@ TagManager:
   - LunaDialogue
   - Basket
   - SnapPoint
+  - Mouth
   layers:
   - Default
   - TransparentFX

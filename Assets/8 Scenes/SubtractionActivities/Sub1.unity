@@ -292,6 +292,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 195000410}
+    - targetCorrespondingSourceObject: {fileID: 5892943937089246443, guid: 438ed1905cb5d094da50039eb4e9cc77,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 195000416}
   m_SourcePrefab: {fileID: 100100000, guid: 438ed1905cb5d094da50039eb4e9cc77, type: 3}
 --- !u!4 &195000407 stripped
 Transform:
@@ -334,13 +338,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 195000408}
-  m_Enabled: 1
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55986af67b914e0408feccc066abb24c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouthAnimator: {fileID: 2141479559}
+  triggerName: PlayMouthAnimation
+--- !u!114 &195000416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195000408}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c803138b2a64cf9459b29b4bbf9d3ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   snapPointObject: {fileID: 0}
-  basketManager: {fileID: 287826187}
+  basketManager: {fileID: 2141479556}
 --- !u!1 &238665675 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5892943937089246443, guid: 438ed1905cb5d094da50039eb4e9cc77,
@@ -1644,6 +1662,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 758637093}
+    - targetCorrespondingSourceObject: {fileID: 5892943937089246443, guid: 438ed1905cb5d094da50039eb4e9cc77,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 758637099}
   m_SourcePrefab: {fileID: 100100000, guid: 438ed1905cb5d094da50039eb4e9cc77, type: 3}
 --- !u!4 &758637090 stripped
 Transform:
@@ -1686,13 +1708,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758637091}
-  m_Enabled: 1
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55986af67b914e0408feccc066abb24c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouthAnimator: {fileID: 2141479559}
+  triggerName: PlayMouthAnimation
+--- !u!114 &758637099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758637091}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c803138b2a64cf9459b29b4bbf9d3ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   snapPointObject: {fileID: 0}
-  basketManager: {fileID: 287826187}
+  basketManager: {fileID: 2141479556}
 --- !u!1001 &768174156
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2152,6 +2188,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 978838529}
+    - targetCorrespondingSourceObject: {fileID: 5892943937089246443, guid: 438ed1905cb5d094da50039eb4e9cc77,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 978838535}
   m_SourcePrefab: {fileID: 100100000, guid: 438ed1905cb5d094da50039eb4e9cc77, type: 3}
 --- !u!1 &978838526 stripped
 GameObject:
@@ -2194,13 +2234,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 978838526}
-  m_Enabled: 1
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55986af67b914e0408feccc066abb24c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouthAnimator: {fileID: 2141479559}
+  triggerName: PlayMouthAnimation
+--- !u!114 &978838535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978838526}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c803138b2a64cf9459b29b4bbf9d3ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   snapPointObject: {fileID: 0}
-  basketManager: {fileID: 287826187}
+  basketManager: {fileID: 2141479556}
 --- !u!1001 &999202039
 PrefabInstance:
   m_ObjectHideFlags: 0

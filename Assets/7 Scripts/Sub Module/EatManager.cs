@@ -2,16 +2,23 @@ using UnityEngine;
 
 public class EatManager : MonoBehaviour
 {
-    public Animator mouthAnimator; // Assign in Inspector
-    public string triggerName = "PlayMouthAnimation"; // Set this trigger in Animator
+    public Animator mouthAnimator; // Drag your mouth animator here
+    public string triggerName = "PlayMouthAnimation"; // Match your Animator trigger name
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Mouth")) // Make sure your food items are tagged "Food"
+        if (other.CompareTag("FoodItem"))
         {
-            Debug.Log("Food entered the mouth!");
-            mouthAnimator.SetTrigger(triggerName);
-            gameObject.SetActive(false);
+            Debug.Log("Food touched the mouth!");
+
+            // Play mouth animation
+            if (mouthAnimator != null)
+            {
+                mouthAnimator.SetTrigger(triggerName);
+            }
+
+            // Remove the food item
+            Destroy(other.gameObject);
         }
     }
 }

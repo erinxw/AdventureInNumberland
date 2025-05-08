@@ -2,8 +2,21 @@ using UnityEngine;
 
 public class EatManager : MonoBehaviour
 {
-    public Animator mouthAnimator; // Drag your mouth animator here
-    public string triggerName = "PlayMouthAnimation"; // Match your Animator trigger name
+    public Animator mouthAnimator;
+    public string triggerName = "PlayMouthAnimation";
+
+    public Animator revealAnimator;
+    public string revealTriggerName = "ShowChoices";
+
+    public int totalFoodToEat;
+    private int foodEaten = 0;
+
+    void Start()
+    {
+        // Automatically count all objects tagged as "FoodItem"
+        totalFoodToEat = GameObject.FindGameObjectsWithTag("FoodItem").Length;
+        Debug.Log("Total food to eat: " + totalFoodToEat);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -11,14 +24,19 @@ public class EatManager : MonoBehaviour
         {
             Debug.Log("Food touched the mouth!");
 
-            // Play mouth animation
             if (mouthAnimator != null)
-            {
                 mouthAnimator.SetTrigger(triggerName);
-            }
 
-            // Remove the food item
             Destroy(other.gameObject);
+            foodEaten++;
+
+            if (foodEaten >= totalFoodToEat)
+            {
+                Debug.Log("All food eaten!");
+
+                if (revealAnimator != null)
+                    revealAnimator.SetTrigger(revealTriggerName);
+            }
         }
     }
 }

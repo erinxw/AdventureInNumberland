@@ -11,10 +11,10 @@ public class EatManager : MonoBehaviour
     public int totalFoodToEat;
     private int foodEaten = 0;
 
+    public SyncAnimWDialogue syncAnim;
+
     void Start()
     {
-        // Automatically count all objects tagged as "FoodItem"
-        totalFoodToEat = GameObject.FindGameObjectsWithTag("FoodItem").Length;
         Debug.Log("Total food to eat: " + totalFoodToEat);
     }
 
@@ -36,6 +36,8 @@ public class EatManager : MonoBehaviour
 
                 if (revealAnimator != null)
                     revealAnimator.SetTrigger(revealTriggerName);
+                if (syncAnim != null)
+                    syncAnim.PlaySubFinalAudio();
             }
         }
     }

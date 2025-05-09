@@ -5,11 +5,12 @@ public class SyncAnimWDialogue : MonoBehaviour
 {
     public Animator talkingAnimator; // Animator for talking animation
     public AudioSource[] audioSources; // Array of AudioSources for dialogue
-    public float silenceThreshold = 0.02f;
-    public float checkInterval = 0.1f;
+    public AudioSource subFinalAudio;
 
     private int currentAudioIndex = 0;
     private bool isPaused = false;
+    private float silenceThreshold = 0.02f;
+    private float checkInterval = 0.1f;
 
     void Start()
     {
@@ -23,6 +24,16 @@ public class SyncAnimWDialogue : MonoBehaviour
             audioSources[currentAudioIndex].Play();
             talkingAnimator.speed = 1; // Start talking animation
             StartCoroutine(ManageAnimationPauses(audioSources[currentAudioIndex]));
+        }
+    }
+
+    public void PlaySubFinalAudio()
+    {
+        if (subFinalAudio != null)
+        {
+            subFinalAudio.Play();
+            talkingAnimator.speed = 1; // Start talking animation
+            StartCoroutine(ManageAnimationPauses(subFinalAudio));
         }
     }
 

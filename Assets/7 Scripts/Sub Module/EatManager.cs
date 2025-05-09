@@ -3,7 +3,6 @@ using UnityEngine;
 public class EatManager : MonoBehaviour
 {
     public Animator mouthAnimator;
-    public string triggerName = "PlayMouthAnimation";
 
     public Animator revealAnimator;
     public string revealTriggerName = "ShowChoices";
@@ -24,8 +23,10 @@ public class EatManager : MonoBehaviour
         {
             Debug.Log("Food touched the mouth!");
 
-            if (mouthAnimator != null)
-                mouthAnimator.SetTrigger(triggerName);
+            if (syncAnim != null)
+            {
+                syncAnim.PlayEatMouthAnimation();
+            }
 
             Destroy(other.gameObject);
             foodEaten++;

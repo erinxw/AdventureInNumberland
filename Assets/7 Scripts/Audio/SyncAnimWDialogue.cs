@@ -3,8 +3,8 @@ using System.Collections;
 
 public class SyncAnimWDialogue : MonoBehaviour
 {
-    public Animator talkingAnimator; // Animator for talking animation
-    public AudioSource[] audioSources; // Array of AudioSources for dialogue
+    public Animator talkingAnimator; // Animator for mouth animation
+    public AudioSource[] audioSources; // Dialogue clips
     public AudioSource subFinalAudio;
 
     private int currentAudioIndex = 0;
@@ -22,7 +22,7 @@ public class SyncAnimWDialogue : MonoBehaviour
         if (currentAudioIndex < audioSources.Length)
         {
             audioSources[currentAudioIndex].Play();
-            talkingAnimator.speed = 1; // Start talking animation
+            TriggerTalkingAnimation();
             StartCoroutine(ManageAnimationPauses(audioSources[currentAudioIndex]));
         }
     }
@@ -32,8 +32,26 @@ public class SyncAnimWDialogue : MonoBehaviour
         if (subFinalAudio != null)
         {
             subFinalAudio.Play();
-            talkingAnimator.speed = 1; // Start talking animation
+            TriggerTalkingAnimation();
             StartCoroutine(ManageAnimationPauses(subFinalAudio));
+        }
+    }
+
+    public void PlayEatMouthAnimation()
+    {
+        Debug.Log("Triggered Eat Animation");
+        if (talkingAnimator != null)
+        {
+            talkingAnimator.speed = 1f;
+            talkingAnimator.SetTrigger("IsEating");
+        }
+    }
+
+    private void TriggerTalkingAnimation()
+    {
+        if (talkingAnimator != null)
+        {
+            talkingAnimator.SetTrigger("IsTalking");
         }
     }
 
@@ -49,7 +67,7 @@ public class SyncAnimWDialogue : MonoBehaviour
             {
                 if (!isPaused)
                 {
-                    talkingAnimator.speed = 0; // Pause talking animation on silence
+                    talkingAnimator.speed = 0; // Temporarily pause
                     isPaused = true;
                 }
             }
@@ -57,7 +75,7 @@ public class SyncAnimWDialogue : MonoBehaviour
             {
                 if (isPaused)
                 {
-                    talkingAnimator.speed = 1; // Resume talking animation when voice resumes
+                    talkingAnimator.speed = 1; // Resume
                     isPaused = false;
                 }
             }
@@ -65,12 +83,12 @@ public class SyncAnimWDialogue : MonoBehaviour
             yield return new WaitForSeconds(checkInterval);
         }
 
-        talkingAnimator.speed = 0; // Stop animation when audio ends
+        talkingAnimator.speed = 0;
         currentAudioIndex++;
 
         if (currentAudioIndex < audioSources.Length)
         {
-            PlayNextDialogue(); // Play the next audio
+            PlayNextDialogue();
         }
     }
 

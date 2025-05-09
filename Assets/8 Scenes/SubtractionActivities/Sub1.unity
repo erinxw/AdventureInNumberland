@@ -3453,7 +3453,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouthAnimator: {fileID: 2141479559}
-  triggerName: PlayMouthAnimation
   revealAnimator: {fileID: 1039827745}
   revealTriggerName: ShowChoices
   totalFoodToEat: 1

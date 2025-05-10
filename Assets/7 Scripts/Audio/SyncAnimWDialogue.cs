@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class SyncAnimWDialogue : MonoBehaviour
 {
@@ -44,6 +45,7 @@ public class SyncAnimWDialogue : MonoBehaviour
         {
             talkingAnimator.speed = 1f;
             talkingAnimator.SetTrigger("IsEating");
+            StartCoroutine(ResetMouthAfterDelay(1f));
         }
     }
 
@@ -53,6 +55,12 @@ public class SyncAnimWDialogue : MonoBehaviour
         {
             talkingAnimator.SetTrigger("IsTalking");
         }
+    }
+
+    IEnumerator ResetMouthAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        talkingAnimator.speed = 0f;
     }
 
     IEnumerator ManageAnimationPauses(AudioSource currentAudioSource)

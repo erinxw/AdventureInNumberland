@@ -149,6 +149,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/8 Scenes/SubtractionActivities/Sub2.unity
     guid: 9fd58ae31e021ff4798b8a5a1025e716
+  - enabled: 1
+    path: Assets/8 Scenes/SubtractionActivities/Sub3.unity
+    guid: 2f2d64e57251f4d40913087dbf26c2de
+  - enabled: 1
+    path: Assets/8 Scenes/SubtractionActivities/Sub4.unity
+    guid: d1a9e7e571801f64f943e8388c4b44e8
+  - enabled: 1
+    path: Assets/8 Scenes/SubtractionActivities/Sub5.unity
+    guid: e9eab675dd6d6394bb5b5d84c32ac09e
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6ee72d15cf39dd748a13eac57397b9af,
       type: 2}

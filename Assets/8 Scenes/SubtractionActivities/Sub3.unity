@@ -3314,7 +3314,7 @@ MonoBehaviour:
   mouthAnimator: {fileID: 2141479559}
   revealAnimator: {fileID: 1039827745}
   revealTriggerName: ShowChoices
-  totalFoodToEat: 2
+  totalFoodToEat: 0
   syncAnim: {fileID: 1098306979}
 --- !u!4 &2141479567 stripped
 Transform:

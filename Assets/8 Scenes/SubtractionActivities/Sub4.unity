@@ -1274,7 +1274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickSound: {fileID: 8300000, guid: a2d2386ca90fe614c9e03e6d377098a3, type: 3}
-  nextSceneName: WrongFeedbackScene1
+  nextSceneName: SubCorrect4
 --- !u!64 &768174161
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1981,7 +1981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickSound: {fileID: 8300000, guid: 93b4d9a944cb6a44093fb82e858ad444, type: 3}
-  nextSceneName: WrongFeedbackScene1
+  nextSceneName: SubWrong4
 --- !u!64 &1234396090
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2133,6 +2133,51 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1453487778
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1453487780}
+  - component: {fileID: 1453487779}
+  m_Layer: 0
+  m_Name: SceneSwitcher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1453487779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453487778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 957d56b699932ab40ad1831bfafe1ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressBar: {fileID: 0}
+--- !u!4 &1453487780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453487778}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 135, y: 1695, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1481667307 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 60761c2ec651da44e932e34bdad96bce,
@@ -2588,7 +2633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickSound: {fileID: 8300000, guid: 93b4d9a944cb6a44093fb82e858ad444, type: 3}
-  nextSceneName: CorrectFeedbackScene1
+  nextSceneName: SubWrong4
 --- !u!64 &1916987819
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3827,6 +3872,7 @@ SceneRoots:
   - {fileID: 1039827746}
   - {fileID: 576693561}
   - {fileID: 1098306978}
+  - {fileID: 1453487780}
   - {fileID: 5213673582964183974}
   - {fileID: 1945437407}
   - {fileID: 596693742}

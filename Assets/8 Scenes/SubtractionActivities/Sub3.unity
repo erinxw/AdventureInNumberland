@@ -1861,6 +1861,7 @@ MonoBehaviour:
   - {fileID: 1249126707}
   - {fileID: 2020710736}
   subFinalAudio: {fileID: 734949625}
+  eatManager: {fileID: 2141479562}
 --- !u!1 &1167446570
 GameObject:
   m_ObjectHideFlags: 0

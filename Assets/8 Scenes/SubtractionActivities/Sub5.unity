@@ -1809,6 +1809,7 @@ MonoBehaviour:
   - {fileID: 1249126707}
   - {fileID: 2020710736}
   subFinalAudio: {fileID: 734949625}
+  eatManager: {fileID: 2141479562}
 --- !u!1 &1167446570
 GameObject:
   m_ObjectHideFlags: 0
@@ -2275,7 +2276,7 @@ GameObject:
   - component: {fileID: 1422467395}
   m_Layer: 0
   m_Name: Lollipop3
-  m_TagString: Untagged
+  m_TagString: FoodItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2407,8 +2408,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.012130435, y: 0.024924627, z: 0.0021094398}
-  m_Center: {x: 0.0008345504, y: -0.0026815797, z: 2.9103828e-10}
+  m_Size: {x: 0.012130435, y: 0.024924627, z: 0.0055294544}
+  m_Center: {x: 0.0008345504, y: -0.0026815797, z: 0.0017100078}
 --- !u!4 &1481667307 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e9a1ca0ed33f08c429db819f02fdea66,
@@ -2990,7 +2991,7 @@ GameObject:
   - component: {fileID: 1981556045}
   m_Layer: 0
   m_Name: Lollipop2
-  m_TagString: Untagged
+  m_TagString: FoodItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3122,8 +3123,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.012130435, y: 0.024924627, z: 0.0021094398}
-  m_Center: {x: 0.0008345504, y: -0.0026815797, z: 2.9103828e-10}
+  m_Size: {x: 0.012130435, y: 0.024924627, z: 0.0054996647}
+  m_Center: {x: 0.0008345504, y: -0.0026815797, z: 0.0016951136}
 --- !u!1 &2020710734
 GameObject:
   m_ObjectHideFlags: 0
@@ -4097,7 +4098,7 @@ GameObject:
   - component: {fileID: 8563041747333307435}
   m_Layer: 0
   m_Name: Lollipop1
-  m_TagString: Untagged
+  m_TagString: FoodItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4168,8 +4169,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.012130435, y: 0.024924627, z: 0.0021094398}
-  m_Center: {x: 0.0008345504, y: -0.0026815797, z: 2.9103828e-10}
+  m_Size: {x: 0.012130435, y: 0.024924627, z: 0.0060652015}
+  m_Center: {x: 0.0008345504, y: -0.0026815797, z: 0.0019778812}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

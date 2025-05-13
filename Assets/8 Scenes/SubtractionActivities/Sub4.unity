@@ -1683,6 +1683,7 @@ MonoBehaviour:
   - {fileID: 1249126707}
   - {fileID: 2020710736}
   subFinalAudio: {fileID: 734949625}
+  eatManager: {fileID: 2141479562}
 --- !u!1 &1167446570
 GameObject:
   m_ObjectHideFlags: 0
@@ -2672,7 +2673,7 @@ GameObject:
   - component: {fileID: 1945437408}
   m_Layer: 0
   m_Name: Cookie2
-  m_TagString: Untagged
+  m_TagString: FoodItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2743,13 +2744,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945437404}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: 1.63, y: -3.64, z: 3.6}
+  m_LocalRotation: {x: -0.258819, y: 0, z: 0, w: 0.9659259}
+  m_LocalPosition: {x: 1.63, y: -3.314, z: 3.569}
   m_LocalScale: {x: 59.995766, y: 59.995758, z: 59.995766}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -10, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -30, y: 0, z: 0}
 --- !u!54 &1945437408
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2796,8 +2797,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.02, y: 0.0041293027, z: 0.019960543}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.02, y: 0.0064236117, z: 0.022801816}
+  m_Center: {x: 0, y: 0.0011471572, z: 0.0014206428}
 --- !u!114 &1945437410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3621,7 +3622,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -3764,13 +3765,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7031681302265908494}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: 0.05000004, y: -3.64, z: 3.6}
+  m_LocalRotation: {x: -0.258819, y: 0, z: 0, w: 0.9659259}
+  m_LocalPosition: {x: 0.05000004, y: -3.314, z: 3.569}
   m_LocalScale: {x: 59.995766, y: 59.995758, z: 59.995766}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -10, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -30, y: 0, z: 0}
 --- !u!1 &7031681302265908494
 GameObject:
   m_ObjectHideFlags: 0
@@ -3787,7 +3788,7 @@ GameObject:
   - component: {fileID: 8563041747333307435}
   m_Layer: 0
   m_Name: Cookie1
-  m_TagString: Untagged
+  m_TagString: FoodItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3846,8 +3847,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.02, y: 0.0041293027, z: 0.019960543}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.02, y: 0.005812759, z: 0.022154156}
+  m_Center: {x: 0, y: 0.0008417301, z: 0.0010968128}
 --- !u!114 &8563041747333307437
 MonoBehaviour:
   m_ObjectHideFlags: 0

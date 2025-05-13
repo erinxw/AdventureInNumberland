@@ -12,6 +12,8 @@ public class EatManager : MonoBehaviour
 
     public SyncAnimWDialogue syncAnim;
 
+    private bool hasTriggeredFinalStep = false;
+
     void Start()
     {
         Debug.Log("Total food to eat: " + totalFoodToEat);
@@ -40,6 +42,20 @@ public class EatManager : MonoBehaviour
                 if (syncAnim != null)
                     syncAnim.PlaySubFinalAudio();
             }
+        }
+    }
+
+    public void OnAllAudiosFinished()
+    {
+        if (totalFoodToEat == 0 && !hasTriggeredFinalStep)
+        {
+            hasTriggeredFinalStep = true; //keep from triggering again
+
+            if (revealAnimator != null)
+                revealAnimator.SetTrigger(revealTriggerName);
+
+            if (syncAnim != null)
+                syncAnim.PlaySubFinalAudio();
         }
     }
 }

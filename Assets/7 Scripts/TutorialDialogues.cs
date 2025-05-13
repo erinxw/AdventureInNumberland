@@ -30,7 +30,7 @@ public class CountingTutorialDialogues : MonoBehaviour
             string currentScene = SceneManager.GetActiveScene().name;
 
             if (currentAudioIndex == 0 || currentAudioIndex == 2 ||
-                (currentAudioIndex == 1 && currentScene == "SubtractionTutorial"))
+                (currentAudioIndex == 1 && currentScene == "SubTutorial"))
             {
                 talkingAnimator.gameObject.SetActive(true);
                 talkingAnimator.speed = 1;

@@ -7,6 +7,7 @@ public class SyncAnimWDialogue : MonoBehaviour
     public Animator talkingAnimator; // Animator for mouth animation
     public AudioSource[] audioSources; // Dialogue clips
     public AudioSource subFinalAudio;
+    public EatManager eatManager;
 
     private int currentAudioIndex = 0;
     private bool isPaused = false;
@@ -97,6 +98,13 @@ public class SyncAnimWDialogue : MonoBehaviour
         if (currentAudioIndex < audioSources.Length)
         {
             PlayNextDialogue();
+        }
+        else
+        {
+            if (eatManager != null)
+            {
+                eatManager.OnAllAudiosFinished();
+            }
         }
     }
 

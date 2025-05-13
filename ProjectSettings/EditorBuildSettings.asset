@@ -191,6 +191,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/8 Scenes/SubAnswerFeedbackPages/SubWrong5.unity
     guid: b692a36822ee3e341a6244931a19d58c
+  - enabled: 1
+    path: Assets/8 Scenes/SubtractionActivities/SubTutorial.unity
+    guid: 17e10e48d88fe984bbabec518327b4aa
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6ee72d15cf39dd748a13eac57397b9af,
       type: 2}

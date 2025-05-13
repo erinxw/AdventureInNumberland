@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class CountingTutorialDialogues : MonoBehaviour
 {
@@ -26,8 +27,10 @@ public class CountingTutorialDialogues : MonoBehaviour
         {
             audioSources[currentAudioIndex].Play();
 
-            // Show Luna (talking animation) only for audio index 0 and 2
-            if (currentAudioIndex == 0 || currentAudioIndex == 2)
+            string currentScene = SceneManager.GetActiveScene().name;
+
+            if (currentAudioIndex == 0 || currentAudioIndex == 2 ||
+                (currentAudioIndex == 1 && currentScene == "SubtractionTutorial"))
             {
                 talkingAnimator.gameObject.SetActive(true);
                 talkingAnimator.speed = 1;

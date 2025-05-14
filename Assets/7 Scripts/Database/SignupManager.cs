@@ -62,7 +62,7 @@ public class SignupManager : MonoBehaviour
                 Debug.Log($"User created successfully: {newUser.Email}");
 
                 // Create a User object and store it in the Firebase Realtime Database
-                User newUserObject = new User(Email.text, Password.text, int.Parse(GuardianPasscode.text));
+                User newUserObject = new User(Email.text, int.Parse(GuardianPasscode.text));
                 StoreUserDataInDatabase(newUser.UserId, newUserObject);
 		
 		LoadNextScene();

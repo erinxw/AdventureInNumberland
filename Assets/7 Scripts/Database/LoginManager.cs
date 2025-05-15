@@ -3,7 +3,6 @@ using Firebase.Auth;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
-using System.Threading.Tasks;
 
 public class LoginManager : MonoBehaviour
 {
@@ -20,9 +19,8 @@ public class LoginManager : MonoBehaviour
         auth = FirebaseAuth.DefaultInstance;
         PasswordInput.contentType = InputField.ContentType.Password;
 
-        // Hide status group at the beginning
         if (StatusGroup != null)
-            StatusGroup.SetActive(false);
+            StatusGroup.SetActive(false);  // Hide status UI initially
     }
 
     public void LoginUser()
@@ -33,7 +31,7 @@ public class LoginManager : MonoBehaviour
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
         {
             ShowStatus("Please fill in all fields.");
-            Debug.LogWarning("Email or password field is empty.");
+            Debug.LogWarning("Email or password is empty.");
             return;
         }
 
@@ -44,24 +42,33 @@ public class LoginManager : MonoBehaviour
         {
             LoginButton.interactable = true;
 
-            if (task.IsFaulted)
+            if (task.IsFaulted || task.IsCanceled)
             {
-                Debug.LogError($"Login failed: {task.Exception?.Flatten()}");
-                var exception = task.Exception?.Flatten().InnerExceptions[0];
+                Debug.LogError("Login failed: " + task.Exception?.Flatten().Message);
+                bool handled = false;
 
-                if (exception is Firebase.FirebaseException firebaseEx)
+                foreach (var e in task.Exception.Flatten().InnerExceptions)
                 {
-                    HandleLoginError((AuthError)firebaseEx.ErrorCode);
+                    if (e is Firebase.FirebaseException firebaseEx)
+                    {
+                        AuthError errorCode = (AuthError)firebaseEx.ErrorCode;
+                        Debug.LogError("Firebase auth error: " + errorCode);
+                        HandleLoginError(errorCode);
+                        handled = true;
+                        break;
+                    }
                 }
-                else
+
+                if (!handled)
                 {
-                    ShowStatus("Login failed. Please try again.");
+                    Debug.LogWarning("Unhandled login error: not a FirebaseException.");
+                    ShowStatus("Something went wrong. Please try again.");
                 }
             }
             else if (task.IsCompletedSuccessfully)
             {
                 FirebaseUser user = task.Result.User;
-                Debug.Log($"User logged in successfully: {user.Email}");
+                Debug.Log($"User logged in: {user.Email}");
                 ShowStatus($"Welcome, {user.Email}!");
                 LoadNextScene();
             }
@@ -70,7 +77,7 @@ public class LoginManager : MonoBehaviour
 
     private void HandleLoginError(AuthError errorCode)
     {
-        Debug.Log($"Firebase Auth Error Code: {errorCode}");
+        Debug.Log($"Firebase Auth Error Code: {errorCode} ({(int)errorCode})");
 
         switch (errorCode)
         {
@@ -78,7 +85,8 @@ public class LoginManager : MonoBehaviour
                 ShowStatus("Invalid email format.");
                 break;
             case AuthError.WrongPassword:
-                ShowStatus("Incorrect password.");
+            case AuthError.InvalidCredential:
+                ShowStatus("Email or password is incorrect.");
                 break;
             case AuthError.UserNotFound:
                 ShowStatus("User not found.");
@@ -91,6 +99,9 @@ public class LoginManager : MonoBehaviour
                 break;
             case AuthError.TooManyRequests:
                 ShowStatus("Too many attempts. Please try again later.");
+                break;
+            case AuthError.NetworkRequestFailed:
+                ShowStatus("Network error. Please check your internet connection.");
                 break;
             default:
                 ShowStatus("Login failed. Please try again.");

@@ -1229,6 +1229,7 @@ MonoBehaviour:
   progressBar: {fileID: 182170448}
   progressBarHighlight: {fileID: 182170446}
   totalActivities: 5
+  moduleKey: countProgress
 --- !u!4 &1622238810
 Transform:
   m_ObjectHideFlags: 0

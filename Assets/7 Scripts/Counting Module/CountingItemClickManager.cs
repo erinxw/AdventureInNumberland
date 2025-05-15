@@ -94,7 +94,7 @@ public class CountingItemClickManager : MonoBehaviour
 
             if (progressBar != null)
             {
-                progressBar.CompleteActivity();
+                progressBar.AddCompletedActivity();
             }
             else
             {

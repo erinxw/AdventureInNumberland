@@ -1314,6 +1314,7 @@ MonoBehaviour:
   progressBar: {fileID: 2083251715}
   progressBarHighlight: {fileID: 2083251714}
   totalActivities: 5
+  moduleKey: countProgress
 --- !u!1 &1628537985
 GameObject:
   m_ObjectHideFlags: 0
@@ -1736,7 +1737,7 @@ PrefabInstance:
     - target: {fileID: 5168652223247465421, guid: 01e03a107c2d6094792151555926bdc7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8059315084818394294, guid: 01e03a107c2d6094792151555926bdc7,
         type: 3}

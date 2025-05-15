@@ -933,6 +933,7 @@ MonoBehaviour:
   progressBar: {fileID: 1961450134}
   progressBarHighlight: {fileID: 615318372}
   totalActivities: 5
+  moduleKey: countProgress
 --- !u!1 &969971627
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ TagManager:
   - Basket
   - SnapPoint
   - Mouth
+  - CorrectAnswer
   layers:
   - Default
   - TransparentFX

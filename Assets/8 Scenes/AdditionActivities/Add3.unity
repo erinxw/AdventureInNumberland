@@ -416,54 +416,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 161007727}
   m_Mesh: {fileID: 5185379819244178349, guid: 1ec24de7a52d4394fbe7225d808be712, type: 3}
---- !u!1 &251921891
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 251921892}
-  - component: {fileID: 251921893}
-  m_Layer: 0
-  m_Name: ProgressBarManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &251921892
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 251921891}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -202.59998, y: -1028.7, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 349270202}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &251921893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 251921891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d7c15f71126fdc4a8b5bb2f2d5fa8a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  progressBar: {fileID: 575229298}
-  progressBarHighlight: {fileID: 575229297}
-  totalActivities: 5
-  moduleKey: addProgress
 --- !u!1001 &287826176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -472,31 +424,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8493447543729951539, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_TagString
-      value: FoodItem
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.043078505
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.043078505
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.043078505
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.018737
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b1d46426ce9b97c47904632423d0a89e,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -586,6 +513,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Basket
+      objectReference: {fileID: 0}
+    - target: {fileID: -8493447543729951539, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_TagString
+      value: FoodItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.043078505
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.043078505
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.043078505
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.018737
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -943,7 +895,6 @@ RectTransform:
   m_Children:
   - {fileID: 2104741130}
   - {fileID: 575229299}
-  - {fileID: 251921892}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2389,6 +2340,54 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 425f2bf4686104941a9c1251849e9f6e, type: 3}
+--- !u!1 &1011406195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1011406197}
+  - component: {fileID: 1011406196}
+  m_Layer: 0
+  m_Name: ProgressBarManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1011406196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011406195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 218bdfa8414486543a649ecc0ca6dbdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressBar: {fileID: 575229298}
+  progressBarHighlight: {fileID: 575229297}
+  totalActivities: 5
+  sceneName: AddCorrect3
+--- !u!4 &1011406197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011406195}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1095379020
 GameObject:
   m_ObjectHideFlags: 0
@@ -2843,6 +2842,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: choice4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 88d88e0bf232b71459d403499c14a2f6,
+        type: 3}
+      propertyPath: m_TagString
+      value: CorrectAnswer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4789,3 +4793,4 @@ SceneRoots:
   - {fileID: 1251726589}
   - {fileID: 600053071}
   - {fileID: 290036563}
+  - {fileID: 1011406197}

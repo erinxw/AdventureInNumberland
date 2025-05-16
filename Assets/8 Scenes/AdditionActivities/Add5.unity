@@ -385,31 +385,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8493447543729951539, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_TagString
-      value: FoodItem
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.043078505
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.043078505
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.043078505
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.018737
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b1d46426ce9b97c47904632423d0a89e,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -499,6 +474,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Basket
+      objectReference: {fileID: 0}
+    - target: {fileID: -8493447543729951539, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_TagString
+      value: FoodItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.043078505
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.043078505
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.043078505
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.018737
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -714,54 +714,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1b457f7dec85454b85560424b664570, type: 3}
---- !u!1 &336230195
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 336230196}
-  - component: {fileID: 336230197}
-  m_Layer: 0
-  m_Name: ProgressBarManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &336230196
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 336230195}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -202.59998, y: -1028.7, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 349270202}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &336230197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 336230195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d7c15f71126fdc4a8b5bb2f2d5fa8a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  progressBar: {fileID: 956796317}
-  progressBarHighlight: {fileID: 956796316}
-  totalActivities: 5
-  moduleKey: addProgress
 --- !u!1 &349270198
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,7 +810,6 @@ RectTransform:
   m_Children:
   - {fileID: 2104741130}
   - {fileID: 956796318}
-  - {fileID: 336230196}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1356,6 +1307,54 @@ Transform:
   - {fileID: 1249126706}
   - {fileID: 187023730}
   - {fileID: 156735429}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &609143629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 609143631}
+  - component: {fileID: 609143630}
+  m_Layer: 0
+  m_Name: ProgressBarManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &609143630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609143629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 218bdfa8414486543a649ecc0ca6dbdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressBar: {fileID: 956796317}
+  progressBarHighlight: {fileID: 956796316}
+  totalActivities: 5
+  sceneName: AddCorrect5
+--- !u!4 &609143631
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609143629}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &635426818
@@ -3055,6 +3054,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: choice5
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3dbb0a7452f81a0469bd6544c5b171d7,
+        type: 3}
+      propertyPath: m_TagString
+      value: CorrectAnswer
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4177,8 +4181,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 218bdfa8414486543a649ecc0ca6dbdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  correctChoice: {fileID: 1234396087}
-  nextSceneName: AddCorrect5
+  progressBar: {fileID: 0}
+  progressBarHighlight: {fileID: 0}
+  totalActivities: 5
+  sceneName: 
 --- !u!1001 &2104741129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4862,3 +4868,4 @@ SceneRoots:
   - {fileID: 469689867}
   - {fileID: 1198845643}
   - {fileID: 1361788941}
+  - {fileID: 609143631}

@@ -1,15 +1,17 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BasketManager : MonoBehaviour
 {
     public Animator animator;
     public int totalItems;
-    private int itemsCollected = 0;
+    public AudioSource[] audioSources;
 
-    public AudioSource[] audioSources; // Set up in Inspector: "One", "Two", etc.
+    private int itemsCollected = 0;
     private int currentAudioIndex = 0;
     private bool isPlayingAudio = false;
+    private Queue<int> audioQueue = new Queue<int>();
 
     void Start()
     {
@@ -22,21 +24,31 @@ public class BasketManager : MonoBehaviour
         itemsCollected++;
         Debug.Log("Item collected! Total: " + itemsCollected);
 
+        // Queue audio playback
         if (currentAudioIndex < audioSources.Length)
         {
-            StartCoroutine(PlayNextAudio());
-        }
+            audioQueue.Enqueue(currentAudioIndex);
+            currentAudioIndex++;
 
-        // Animation will be triggered from the coroutine when audio finishes
+            if (!isPlayingAudio)
+            {
+                StartCoroutine(PlayQueuedAudio());
+            }
+        }
     }
 
-    IEnumerator PlayNextAudio()
+    IEnumerator PlayQueuedAudio()
     {
         isPlayingAudio = true;
 
-        audioSources[currentAudioIndex].Play();
-        yield return new WaitForSeconds(audioSources[currentAudioIndex].clip.length);
-        currentAudioIndex++;
+        while (audioQueue.Count > 0)
+        {
+            int index = audioQueue.Dequeue();
+            AudioSource currentAudio = audioSources[index];
+
+            currentAudio.Play();
+            yield return new WaitForSeconds(currentAudio.clip.length);
+        }
 
         isPlayingAudio = false;
 

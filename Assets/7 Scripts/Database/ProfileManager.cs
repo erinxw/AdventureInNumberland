@@ -8,16 +8,15 @@ using Firebase.Extensions;
 public class ProfileManager : MonoBehaviour
 {
     public InputField emailInputField;
-    public InputField passwordInputField;
     public InputField guardianPasscodeInputField;
+    public Text StatusText;              // Reference to the error message text UI (optional)
+    public GameObject StatusGroup;
 
     private DatabaseReference reference;
     private FirebaseAuth auth;
 
     private void Start()
     {
-        passwordInputField.contentType = InputField.ContentType.Password;
-
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted)
@@ -31,6 +30,10 @@ public class ProfileManager : MonoBehaviour
 
             RetrieveDataForLoggedInUser();
         });
+
+        // Hide the error message initially
+        if (StatusGroup != null)
+            StatusGroup.SetActive(false);
     }
 
     public void RetrieveDataForLoggedInUser()
@@ -46,7 +49,7 @@ public class ProfileManager : MonoBehaviour
                 {
                     if (task.IsFaulted)
                     {
-                        Debug.LogError("Error fetching data: " + task.Exception);
+                        ShowStatus("Error fetching data: " + task.Exception);
                     }
                     else if (task.IsCompleted)
                     {
@@ -55,11 +58,9 @@ public class ProfileManager : MonoBehaviour
                         if (snapshot.Exists)
                         {
                             string email = snapshot.Child("email").Value?.ToString();
-                            string password = snapshot.Child("password").Value?.ToString();
                             string guardianPasscode = snapshot.Child("guardianPasscode").Value?.ToString();
 
                             emailInputField.text = email;
-                            passwordInputField.text = password;
                             guardianPasscodeInputField.text = guardianPasscode;
 
                             // Make the input fields non-editable initially (view mode)
@@ -67,21 +68,29 @@ public class ProfileManager : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("No data available for the user.");
+                            ShowStatus("Profile not found. Please log in again.");
                         }
                     }
                 });
         }
         else
         {
-            Debug.LogError("No user is currently logged in.");
+            ShowStatus("Please log in to see your profile.");
         }
     }
 
     private void SetFieldsInteractable(bool interactable)
     {
         emailInputField.interactable = interactable;
-        passwordInputField.interactable = interactable;
         guardianPasscodeInputField.interactable = interactable;
+    }
+
+    private void ShowStatus(string message)
+    {
+        if (StatusGroup != null)
+            StatusGroup.SetActive(true);
+
+        if (StatusText != null)
+            StatusText.text = message;
     }
 }

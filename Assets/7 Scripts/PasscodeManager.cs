@@ -12,7 +12,8 @@ public class FirebasePasscodeManager : MonoBehaviour
     private FirebaseAuth firebaseAuth;  // Firebase authentication reference
     public InputField passcodeInputField;  // Reference to the input field for entering the passcode
     public Button submitButton;            // Reference to the submit button
-    public Text errorMessage;              // Reference to the error message text UI (optional)
+    public Text StatusText;              // Reference to the error message text UI (optional)
+    public GameObject StatusGroup;
 
     private string correctPasscode;
 
@@ -40,10 +41,8 @@ public class FirebasePasscodeManager : MonoBehaviour
         submitButton.onClick.AddListener(CheckPasscode);
 
         // Optionally hide the error message initially
-        if (errorMessage != null)
-        {
-            errorMessage.gameObject.SetActive(false);
-        }
+        if (StatusGroup != null)
+            StatusGroup.SetActive(false);
     }
 
     // Fetch passcode for the logged-in user
@@ -95,11 +94,16 @@ public class FirebasePasscodeManager : MonoBehaviour
         {
             // Incorrect passcode, show error message
             Debug.Log("Incorrect passcode!");
-            if (errorMessage != null)
-            {
-                errorMessage.gameObject.SetActive(true); // Show the error message
-                errorMessage.text = "Incorrect passcode, please try again.";
-            }
+            ShowStatus("Incorrect passcode, please try again.");
         }
+    }
+
+    private void ShowStatus(string message)
+    {
+        if (StatusGroup != null)
+            StatusGroup.SetActive(true);
+
+        if (StatusText != null)
+            StatusText.text = message;
     }
 }

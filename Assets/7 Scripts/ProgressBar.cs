@@ -18,8 +18,12 @@ public class ProgressBar : MonoBehaviour
     {
         dbReference = FirebaseDatabase.DefaultInstance.RootReference;
 
-        completedActivities = PlayerPrefs.GetInt("countProgress", 0);
-        UpdateProgressBar();
+        // Hide progress UI until data is loaded
+        if (progressBar != null)
+            progressBar.gameObject.SetActive(false);
+        if (progressBarHighlight != null)
+            progressBarHighlight.SetActive(false);
+
         LoadProgress();
     }
 
@@ -44,14 +48,29 @@ public class ProgressBar : MonoBehaviour
 
         string userId = user.UserId;
 
-        dbReference.Child("users").Child(userId).Child("progress").Child("countProgress").GetValueAsync()
+        dbReference.Child("users").Child(userId).Child("countProgress").GetValueAsync()
             .ContinueWithOnMainThread(task =>
             {
-                if (task.IsCompleted && task.Result.Exists)
+                if (task.IsCompleted)
                 {
-                    completedActivities = Convert.ToInt32(task.Result.Value);
+                    if (task.Result.Exists)
+                    {
+                        completedActivities = Convert.ToInt32(task.Result.Value);
+                    }
+                    else
+                    {
+                        completedActivities = 0;
+                    }
+
                     UpdateProgressBar();
-                    PlayerPrefs.SetInt("countProgress", completedActivities);
+
+                    // Now show the progress bar
+                    if (progressBar != null)
+                        progressBar.gameObject.SetActive(true);
+                }
+                else
+                {
+                    Debug.LogError("Failed to load progress from Firebase: " + task.Exception);
                 }
             });
     }
@@ -67,13 +86,16 @@ public class ProgressBar : MonoBehaviour
 
         string userId = user.UserId;
 
-        dbReference.Child("users").Child(userId).Child("progress").Child("countProgress").SetValueAsync(completedActivities)
+        dbReference.Child("users").Child(userId).Child("countProgress").SetValueAsync(completedActivities)
             .ContinueWithOnMainThread(task =>
             {
                 if (task.IsCompleted)
                 {
-                    PlayerPrefs.SetInt("countProgress", completedActivities);
                     Debug.Log($"Progress saved: countProgress = {completedActivities}");
+                }
+                else
+                {
+                    Debug.LogError("Failed to save progress to Firebase: " + task.Exception);
                 }
             });
     }

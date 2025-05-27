@@ -933,7 +933,6 @@ MonoBehaviour:
   progressBar: {fileID: 1961450134}
   progressBarHighlight: {fileID: 615318372}
   totalActivities: 5
-  moduleKey: countProgress
 --- !u!1 &969971627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,6 +1171,7 @@ MonoBehaviour:
   - {fileID: 693056647}
   nextSceneName: CountingOneFeedbackScene
   progressBar: {fileID: 960145745}
+  instrAudio: {fileID: 246902491}
 --- !u!64 &1085758797
 MeshCollider:
   m_ObjectHideFlags: 0

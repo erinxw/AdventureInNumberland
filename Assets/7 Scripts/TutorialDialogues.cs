@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CountingTutorialDialogues : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class CountingTutorialDialogues : MonoBehaviour
     public Animator tutorialAnimator;        // Animator for tutorial animation
     public GameObject tutorialObject;        // Object that appears in second audio
     public AudioSource[] audioSources;       // Array of 3 AudioSources
+    public Button nextButton;                // Button to AR activity
     public float silenceThreshold = 0.02f;   // Volume threshold to detect silence
     public float checkInterval = 0.1f;       // How often to check for silence
 
@@ -18,6 +20,7 @@ public class CountingTutorialDialogues : MonoBehaviour
     {
         tutorialObject.SetActive(false);             // Hide tutorial at start
         talkingAnimator.gameObject.SetActive(false); // Hide Luna at start
+        nextButton.interactable = false;             // Disable next button initially
         PlayNextDialogue();
     }
 
@@ -52,6 +55,11 @@ public class CountingTutorialDialogues : MonoBehaviour
             }
 
             StartCoroutine(ManageAnimationPauses(audioSources[currentAudioIndex]));
+        }
+        else
+        {
+            // All dialogues played, enable next button
+            nextButton.interactable = true;
         }
     }
 
@@ -95,6 +103,7 @@ public class CountingTutorialDialogues : MonoBehaviour
         {
             tutorialObject.SetActive(false);
             talkingAnimator.gameObject.SetActive(false);
+            nextButton.interactable = true; // Enable next button after all dialogues
         }
     }
 

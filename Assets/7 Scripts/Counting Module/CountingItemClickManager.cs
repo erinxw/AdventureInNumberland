@@ -9,6 +9,7 @@ public class CountingItemClickManager : MonoBehaviour
     public AudioSource[] audioSources;
     public string nextSceneName;
     public ProgressBar progressBar;
+    public AudioSource instrAudio;
 
     private int currentAudioIndex = 0;
     private HashSet<GameObject> clickedItems = new HashSet<GameObject>();
@@ -25,7 +26,7 @@ public class CountingItemClickManager : MonoBehaviour
 
     void Update()
     {
-        if (completed) return;
+        if (completed || IsInstrAudioPlaying()) return;
 
         if (Touchscreen.current.primaryTouch.press.isPressed)
         {
@@ -46,11 +47,8 @@ public class CountingItemClickManager : MonoBehaviour
                         Debug.Log("[Update] Marking item: " + hit.collider.name);
                         MarkItem(hit.collider.gameObject);
 
-                        if (!isPlayingAudio)
-                        {
-                            Debug.Log("[Update] Starting PlayNextAudio coroutine");
-                            StartCoroutine(PlayNextAudio());
-                        }
+                        Debug.Log("[Update] Starting PlayNextAudio coroutine");
+                        StartCoroutine(PlayNextAudio());
                     }
                     else
                     {
@@ -63,6 +61,11 @@ public class CountingItemClickManager : MonoBehaviour
                 Debug.Log("[Update] No valid object hit.");
             }
         }
+    }
+
+    bool IsInstrAudioPlaying()
+    {
+        return instrAudio != null && instrAudio.isPlaying;
     }
 
     void MarkItem(GameObject item)

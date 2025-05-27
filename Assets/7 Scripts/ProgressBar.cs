@@ -12,17 +12,15 @@ public class ProgressBar : MonoBehaviour
     public GameObject progressBarHighlight;
     public int totalActivities = 5;
 
-    private int completedActivities;
+    private int completedActivities = 0;
 
     void Start()
     {
         dbReference = FirebaseDatabase.DefaultInstance.RootReference;
 
-        // Hide progress UI until data is loaded
-        if (progressBar != null)
-            progressBar.gameObject.SetActive(false);
-        if (progressBarHighlight != null)
-            progressBarHighlight.SetActive(false);
+        // Hide progress bar initially
+        if (progressBar != null) progressBar.gameObject.SetActive(false);
+        if (progressBarHighlight != null) progressBarHighlight.SetActive(false);
 
         LoadProgress();
     }
@@ -47,8 +45,9 @@ public class ProgressBar : MonoBehaviour
         }
 
         string userId = user.UserId;
+        Debug.Log("Loading progress for user: " + userId);
 
-        dbReference.Child("users").Child(userId).Child("countProgress").GetValueAsync()
+        dbReference.Child("users").Child(userId).Child("progress").Child("countProgress").GetValueAsync()
             .ContinueWithOnMainThread(task =>
             {
                 if (task.IsCompleted)
@@ -56,15 +55,16 @@ public class ProgressBar : MonoBehaviour
                     if (task.Result.Exists)
                     {
                         completedActivities = Convert.ToInt32(task.Result.Value);
+                        Debug.Log("Loaded progress: " + completedActivities);
                     }
                     else
                     {
                         completedActivities = 0;
+                        Debug.Log("No saved progress found. Starting fresh.");
                     }
 
                     UpdateProgressBar();
 
-                    // Now show the progress bar
                     if (progressBar != null)
                         progressBar.gameObject.SetActive(true);
                 }
@@ -86,7 +86,7 @@ public class ProgressBar : MonoBehaviour
 
         string userId = user.UserId;
 
-        dbReference.Child("users").Child(userId).Child("countProgress").SetValueAsync(completedActivities)
+        dbReference.Child("users").Child(userId).Child("progress").Child("countProgress").SetValueAsync(completedActivities)
             .ContinueWithOnMainThread(task =>
             {
                 if (task.IsCompleted)
@@ -105,7 +105,8 @@ public class ProgressBar : MonoBehaviour
         if (progressBar != null)
         {
             progressBar.maxValue = totalActivities;
-            progressBar.SetValueWithoutNotify(completedActivities);
+            progressBar.value = completedActivities;
+            Debug.Log($"Progress bar updated: {completedActivities}/{totalActivities}");
         }
 
         if (progressBarHighlight != null)

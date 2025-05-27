@@ -51,7 +51,7 @@ EditorBuildSettings:
     path: Assets/8 Scenes/SettingsPageScene.unity
     guid: cf2e0c7564805fe4685d30161a5a67d2
   - enabled: 1
-    path: Assets/8 Scenes/FinishModuleScene.unity
+    path: Assets/8 Scenes/Counting Feedback Scenes/FinishModuleScene.unity
     guid: fc9965c8d4c84384c9fa6e3528db7914
   - enabled: 1
     path: Assets/8 Scenes/Counting Feedback Scenes/CountingOneFeedbackScene.unity

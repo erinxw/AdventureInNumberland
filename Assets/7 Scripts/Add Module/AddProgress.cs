@@ -84,7 +84,7 @@ public class AddProgress : MonoBehaviour
             return;
         }
 
-        dbReference.Child("users").Child(userId).Child("addProgress").SetValueAsync(completedActivities)
+        dbReference.Child("users").Child(userId).Child("progress").Child("addProgress").SetValueAsync(completedActivities)
             .ContinueWithOnMainThread(task =>
             {
                 if (task.IsFaulted)
@@ -111,7 +111,7 @@ public class AddProgress : MonoBehaviour
             return;
         }
 
-        dbReference.Child("users").Child(userId).Child("addProgress").GetValueAsync()
+        dbReference.Child("users").Child(userId).Child("progress").Child("addProgress").GetValueAsync()
             .ContinueWithOnMainThread(task =>
             {
                 if (task.IsFaulted)

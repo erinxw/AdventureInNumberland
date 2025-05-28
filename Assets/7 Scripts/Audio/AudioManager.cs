@@ -100,7 +100,6 @@ public class AudioManager : MonoBehaviour
     public void SetSFXState(bool isOn)
     {
         isSfxOn = isOn;
-        buttonClickSource.mute = !isSfxOn;
         SaveAudioSetting("sfx", isSfxOn);
     }
 
@@ -146,7 +145,7 @@ public class AudioManager : MonoBehaviour
             backgroundMusicSource.volume = 1.0f;
         }
     }
-    
+
     public void DestroySelf()
     {
         Destroy(gameObject);

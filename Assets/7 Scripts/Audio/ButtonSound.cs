@@ -17,14 +17,7 @@ public class ButtonSound : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        PlayClickSound();
-    }
-
-    private void PlayClickSound()
-    {
-        if (audioSource != null && audioSource.clip != null)
-        {
-            audioSource.PlayOneShot(audioSource.clip);
-        }
+        AudioManager.instance?.PlayButtonClickSound();
+        AudioInitializer.instance?.PlayButtonClick();
     }
 }

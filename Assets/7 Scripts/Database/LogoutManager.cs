@@ -36,6 +36,9 @@ public class LogoutManager : MonoBehaviour
         {
             auth.SignOut();  // Sign out the user
             Debug.Log("User signed out successfully.");
+
+            // Destroy AudioManager upon logout
+            AudioManager.instance.DestroySelf();
         }
         else
         {

@@ -71,6 +71,10 @@ public class LoginManager : MonoBehaviour
                 Debug.Log($"User logged in: {user.Email}");
                 ShowStatus($"Welcome, {user.Email}!");
                 LoadNextScene();
+
+                // Destroy AudioInitializer after login
+                AudioInitializer.instance.DestroySelf();
+                Debug.Log("AudioInitializer destroyed after login.");
             }
         });
     }

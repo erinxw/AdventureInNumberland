@@ -27,7 +27,10 @@ public class ToggleBGM : MonoBehaviour
             return;
         }
 
-        // Load saved state from Firebase
+        // Step 1: Remove any previous listeners to avoid duplicate triggers
+        bgmToggle.onValueChanged.RemoveAllListeners();
+
+        // Step 2: Load saved state from Firebase
         dbRef.Child("users").Child(userId).Child("settings").Child("bgm").GetValueAsync()
             .ContinueWithOnMainThread(task =>
             {
@@ -36,16 +39,18 @@ public class ToggleBGM : MonoBehaviour
                     bool isBgmOn = bool.Parse(task.Result.Value.ToString());
                     bgmToggle.isOn = isBgmOn;
 
+                    // Set BGM state in AudioManager
                     AudioManager audioManager = FindAnyObjectByType<AudioManager>();
                     if (audioManager != null)
                         audioManager.SetBGMState(isBgmOn);
                 }
                 else
                 {
-                    bgmToggle.isOn = true; // Default ON
+                    // Default ON if nothing saved yet
+                    bgmToggle.isOn = true;
                 }
 
-                // Add listener only after value is set
+                // Step 3: Add listener only after value is applied
                 bgmToggle.onValueChanged.AddListener(ToggleBgMusic);
             });
     }
@@ -56,11 +61,18 @@ public class ToggleBGM : MonoBehaviour
         if (audioManager != null)
             audioManager.SetBGMState(isOn);
 
+        // Save to Firebase
         dbRef.Child("users").Child(userId).Child("settings").Child("bgm").SetValueAsync(isOn)
             .ContinueWithOnMainThread(task =>
             {
-                if (!task.IsCompleted || task.IsFaulted)
+                if (task.IsCompletedSuccessfully)
+                {
+                    Debug.Log("BGM setting saved: " + isOn);
+                }
+                else
+                {
                     Debug.LogError("Failed to save BGM: " + task.Exception);
+                }
             });
     }
 }

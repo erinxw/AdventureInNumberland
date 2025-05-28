@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Firebase;
 using Firebase.Auth;
 using Firebase.Database;
+using Firebase.Extensions;
 
 public class ToggleBGM : MonoBehaviour
 {
@@ -23,53 +23,43 @@ public class ToggleBGM : MonoBehaviour
 
         if (bgmToggle == null)
         {
-            Debug.LogError("BGM Toggle is not assigned in ToggleBGM!");
+            Debug.LogError("BGM Toggle is not assigned!");
             return;
         }
 
-        dbRef.Child("users").Child(userId).Child("settings").Child("bgm").GetValueAsync().ContinueWith(task =>
-        {
-            if (task.IsCompleted && task.Result.Exists)
+        // Load saved state from Firebase
+        dbRef.Child("users").Child(userId).Child("settings").Child("bgm").GetValueAsync()
+            .ContinueWithOnMainThread(task =>
             {
-                bool isBgmOn = bool.Parse(task.Result.Value.ToString());
-
-                MainThreadDispatcher.Instance().Enqueue(() =>
+                if (task.IsCompleted && task.Result.Exists)
                 {
+                    bool isBgmOn = bool.Parse(task.Result.Value.ToString());
                     bgmToggle.isOn = isBgmOn;
 
                     AudioManager audioManager = FindAnyObjectByType<AudioManager>();
                     if (audioManager != null)
                         audioManager.SetBGMState(isBgmOn);
-
-                    bgmToggle.onValueChanged.AddListener(ToggleBgMusic);
-                });
-            }
-            else
-            {
-                Debug.Log("No saved BGM setting found, defaulting to ON.");
-                MainThreadDispatcher.Instance().Enqueue(() =>
+                }
+                else
                 {
-                    bgmToggle.isOn = true;
-                    bgmToggle.onValueChanged.AddListener(ToggleBgMusic);
-                });
-            }
-        });
+                    bgmToggle.isOn = true; // Default ON
+                }
+
+                // Add listener only after value is set
+                bgmToggle.onValueChanged.AddListener(ToggleBgMusic);
+            });
     }
 
     void ToggleBgMusic(bool isOn)
     {
         AudioManager audioManager = FindAnyObjectByType<AudioManager>();
         if (audioManager != null)
-        {
             audioManager.SetBGMState(isOn);
-        }
 
         dbRef.Child("users").Child(userId).Child("settings").Child("bgm").SetValueAsync(isOn)
-            .ContinueWith(task =>
+            .ContinueWithOnMainThread(task =>
             {
-                if (task.IsCompleted)
-                    Debug.Log("BGM saved: " + isOn);
-                else
+                if (!task.IsCompleted || task.IsFaulted)
                     Debug.LogError("Failed to save BGM: " + task.Exception);
             });
     }

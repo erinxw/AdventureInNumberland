@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6506752aeded15f46b9f805356d9fea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicToggle: {fileID: 1999920474}
+  bgmToggle: {fileID: 1999920474}
 --- !u!114 &362053815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,6 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957d56b699932ab40ad1831bfafe1ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  progressBar: {fileID: 0}
 --- !u!4 &391378720
 Transform:
   m_ObjectHideFlags: 0

@@ -11,11 +11,11 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton pattern to ensure only one AudioManager exists
+        // Singleton pattern
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // Keep music playing across scenes
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -25,7 +25,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        // Load saved BGM & SFX state
+        // Load from PlayerPrefs (optional fallback before Firebase login)
         isBgmOn = PlayerPrefs.GetInt("BGM", 1) == 1;
         isSfxOn = PlayerPrefs.GetInt("SFX", 1) == 1;
 
@@ -33,12 +33,11 @@ public class AudioManager : MonoBehaviour
         buttonClickSource.mute = !isSfxOn;
     }
 
-    public void ToggleMusic()
+    public void ToggleBGM()
     {
         isBgmOn = !isBgmOn;
         backgroundMusicSource.mute = !isBgmOn;
 
-        // Save state
         PlayerPrefs.SetInt("BGM", isBgmOn ? 1 : 0);
         PlayerPrefs.Save();
     }
@@ -48,29 +47,37 @@ public class AudioManager : MonoBehaviour
         isSfxOn = !isSfxOn;
         buttonClickSource.mute = !isSfxOn;
 
-        // Save state
+        PlayerPrefs.SetInt("SFX", isSfxOn ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+
+    public void SetBGMState(bool isOn)
+    {
+        isBgmOn = isOn;
+        backgroundMusicSource.mute = !isBgmOn;
+
+        PlayerPrefs.SetInt("BGM", isBgmOn ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+
+    public void SetSFXState(bool isOn)
+    {
+        isSfxOn = isOn;
+        buttonClickSource.mute = !isSfxOn;
+
         PlayerPrefs.SetInt("SFX", isSfxOn ? 1 : 0);
         PlayerPrefs.Save();
     }
 
     public void PlayButtonClickSound()
     {
-        if (isSfxOn)
+        if (isSfxOn && buttonClickSource != null)
         {
             buttonClickSource.Play();
         }
     }
-    public void SetMusicState(bool isOn)
-    {
-        backgroundMusicSource.mute = !isOn;
-    }
 
-    public void SetSFXState(bool isOn)
-    {
-        buttonClickSource.mute = !isOn;
-    }
-
-    void Update()
+    private void Update()
     {
         if (GameObject.FindGameObjectWithTag("LunaDialogue") != null)
         {
@@ -81,5 +88,4 @@ public class AudioManager : MonoBehaviour
             backgroundMusicSource.volume = 1.0f;
         }
     }
-
 }

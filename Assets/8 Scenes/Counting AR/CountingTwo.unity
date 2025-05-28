@@ -661,6 +661,7 @@ MonoBehaviour:
   - {fileID: 1359863904}
   nextSceneName: CountingTwoFeedbackScene
   progressBar: {fileID: 1622238809}
+  instrAudio: {fileID: 246902491}
 --- !u!4 &313789865
 Transform:
   m_ObjectHideFlags: 0
@@ -1229,7 +1230,6 @@ MonoBehaviour:
   progressBar: {fileID: 182170448}
   progressBarHighlight: {fileID: 182170446}
   totalActivities: 5
-  moduleKey: countProgress
 --- !u!4 &1622238810
 Transform:
   m_ObjectHideFlags: 0

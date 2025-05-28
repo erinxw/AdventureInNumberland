@@ -1,30 +1,62 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Firebase;
+using Firebase.Auth;
+using Firebase.Database;
+using System;
 
 public class ToggleSFX : MonoBehaviour
 {
     public Toggle sfxToggle;
+    private DatabaseReference dbRef;
+    private string userId;
 
     private void Start()
     {
-        if (sfxToggle != null)
+        if (FirebaseAuth.DefaultInstance.CurrentUser == null)
         {
-            // Load saved state
-            AudioManager audioManager = FindAnyObjectByType<AudioManager>();
-            if (audioManager != null)
-            {
-                bool isSfxOn = PlayerPrefs.GetInt("SFX", 1) == 1;
-                sfxToggle.isOn = isSfxOn;
-                audioManager.SetSFXState(isSfxOn);
-            }
-
-            // Listen for toggle changes
-            sfxToggle.onValueChanged.AddListener(ToggleSoundEffects);
+            Debug.LogError("User not logged in.");
+            return;
         }
-        else
+
+        userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+        dbRef = FirebaseDatabase.DefaultInstance.RootReference;
+
+        if (sfxToggle == null)
         {
             Debug.LogError("SFX Toggle is not assigned in ToggleSFX!");
+            return;
         }
+
+        // Load saved state from Firebase
+        dbRef.Child("users").Child(userId).Child("settings").Child("sfx").GetValueAsync().ContinueWith(task =>
+        {
+            if (task.IsCompleted && task.Result.Exists)
+            {
+                bool isSfxOn = bool.Parse(task.Result.Value.ToString());
+
+                MainThreadDispatcher.Instance().Enqueue(() =>
+                {
+                    sfxToggle.isOn = isSfxOn;
+
+                    AudioManager audioManager = FindAnyObjectByType<AudioManager>();
+                    if (audioManager != null)
+                        audioManager.SetSFXState(isSfxOn);
+
+                    // Add listener AFTER setting toggle
+                    sfxToggle.onValueChanged.AddListener(ToggleSoundEffects);
+                });
+            }
+            else
+            {
+                Debug.Log("No saved SFX setting found, defaulting to ON.");
+                MainThreadDispatcher.Instance().Enqueue(() =>
+                {
+                    sfxToggle.isOn = true;
+                    sfxToggle.onValueChanged.AddListener(ToggleSoundEffects);
+                });
+            }
+        });
     }
 
     void ToggleSoundEffects(bool isOn)
@@ -32,11 +64,16 @@ public class ToggleSFX : MonoBehaviour
         AudioManager audioManager = FindAnyObjectByType<AudioManager>();
         if (audioManager != null)
         {
-            audioManager.ToggleSFX();
+            audioManager.SetSFXState(isOn);
         }
-        else
-        {
-            Debug.LogError("AudioManager not found!");
-        }
+
+        dbRef.Child("users").Child(userId).Child("settings").Child("sfx").SetValueAsync(isOn)
+            .ContinueWith(task =>
+            {
+                if (task.IsCompleted)
+                    Debug.Log("SFX saved: " + isOn);
+                else
+                    Debug.LogError("Failed to save SFX: " + task.Exception);
+            });
     }
 }

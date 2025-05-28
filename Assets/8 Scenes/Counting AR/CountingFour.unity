@@ -1808,6 +1808,7 @@ MonoBehaviour:
   - {fileID: 530079398}
   nextSceneName: CountingFourFeedbackScene
   progressBar: {fileID: 1834898319}
+  instrAudio: {fileID: 0}
 --- !u!114 &1718642866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1827,6 +1828,7 @@ MonoBehaviour:
   - {fileID: 530079398}
   nextSceneName: CountingFourFeedbackScene
   progressBar: {fileID: 1834898319}
+  instrAudio: {fileID: 0}
 --- !u!114 &1718642867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1846,6 +1848,7 @@ MonoBehaviour:
   - {fileID: 530079398}
   nextSceneName: CountingFourFeedbackScene
   progressBar: {fileID: 1834898319}
+  instrAudio: {fileID: 0}
 --- !u!114 &1718642868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1865,6 +1868,7 @@ MonoBehaviour:
   - {fileID: 530079398}
   nextSceneName: CountingFourFeedbackScene
   progressBar: {fileID: 1834898319}
+  instrAudio: {fileID: 246902491}
 --- !u!64 &1718642869
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2162,7 +2166,6 @@ MonoBehaviour:
   progressBar: {fileID: 1756785544}
   progressBarHighlight: {fileID: 1756785543}
   totalActivities: 5
-  moduleKey: countProgress
 --- !u!1001 &1940630358
 PrefabInstance:
   m_ObjectHideFlags: 0

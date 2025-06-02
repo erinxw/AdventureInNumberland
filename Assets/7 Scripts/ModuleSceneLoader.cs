@@ -121,5 +121,40 @@ public class ModuleSceneLoader : MonoBehaviour
         }
     }
 
-    // Your ResetProgress and CancelReset methods can similarly use progressKey to reset correct progress.
+    public void ResetProgress()
+    {
+        var user = FirebaseAuth.DefaultInstance.CurrentUser;
+        if (user == null)
+        {
+            Debug.LogError("[ModuleSceneLoader] Cannot reset progress. User not authenticated.");
+            return;
+        }
+
+        string userId = user.UserId;
+        Debug.Log("[ModuleSceneLoader] Resetting progress for user: " + userId + ", key: " + progressKey);
+
+        dbReference.Child("users").Child(userId).Child("progress").Child(progressKey).SetValueAsync(0)
+            .ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCompleted)
+                {
+                    Debug.Log("[ModuleSceneLoader] Progress reset successfully. Reloading tutorial scene.");
+                    string sceneToLoad = GetSceneNameFromProgress(0);
+                    SceneManager.LoadScene(sceneToLoad);
+                }
+                else
+                {
+                    Debug.LogError("[ModuleSceneLoader] Failed to reset progress: " + task.Exception);
+                }
+            });
+    }
+
+    public void CancelReset()
+    {
+        if (resetPopup != null)
+        {
+            resetPopup.SetActive(false);
+            Debug.Log("[ModuleSceneLoader] Reset cancelled. Popup closed.");
+        }
+    }
 }

@@ -13,14 +13,39 @@ public class SyncAnimWDialogue : MonoBehaviour
     private bool isPaused = false;
     private float silenceThreshold = 0.02f;
     private float checkInterval = 0.1f;
+    private Collider[] colliders;
+    private bool isPLayingFinalAudio = false;
+
+    private void Awake()
+    {
+        GameObject[] foodItems = GameObject.FindGameObjectsWithTag("FoodItem");
+        foodItemColliders = foodItems
+        .Select(obj => obj.GetComponent<Collider>())
+        .Where(collider => collider != null)
+        .ToArray();
+    }
 
     void Start()
     {
         PlayNextDialogue();
     }
 
+    void Update()
+    {
+        if (isPLayingFinalAudio && !subFinalAudio.isPlaying)
+        {
+            SetInteraction(true); // Enable interaction after final audio finishes
+            isPLayingFinalAudio = false;
+        }
+    }
+
     public void PlayNextDialogue()
     {
+        if (currentAudioIndex == 0)
+        {
+            SetInteraction(false); // Disable interaction at the start
+        }
+
         if (currentAudioIndex < audioSources.Length)
         {
             audioSources[currentAudioIndex].Play();
@@ -33,8 +58,10 @@ public class SyncAnimWDialogue : MonoBehaviour
     {
         if (subFinalAudio != null)
         {
+            SetInteraction(false); // Disable interaction for sub-final audio
             subFinalAudio.Play();
             TriggerTalkingAnimation();
+            isPLayingFinalAudio = true;
             StartCoroutine(ManageAnimationPauses(subFinalAudio));
         }
     }
@@ -95,6 +122,11 @@ public class SyncAnimWDialogue : MonoBehaviour
         talkingAnimator.speed = 0;
         currentAudioIndex++;
 
+        if (currentAudioIndex == 2)
+        {
+            SetInteraction(true); // Enable interaction after the second audio
+        }
+
         if (currentAudioIndex < audioSources.Length)
         {
             PlayNextDialogue();
@@ -116,5 +148,16 @@ public class SyncAnimWDialogue : MonoBehaviour
             sum += Mathf.Abs(sample);
         }
         return sum / samples.Length;
+    }
+
+    private void SetInteraction(bool enabled)
+    {
+        foreach (var collider in foodItemColliders)
+        {
+            if (collider != null)
+            {
+                collider.enabled = enabled;
+            }
+        }
     }
 }

@@ -19,7 +19,7 @@ public class SyncAnimWDialogue : MonoBehaviour
     private void Awake()
     {
         GameObject[] foodItems = GameObject.FindGameObjectsWithTag("FoodItem");
-        foodItemColliders = foodItems
+        colliders = foodItems
         .Select(obj => obj.GetComponent<Collider>())
         .Where(collider => collider != null)
         .ToArray();
@@ -152,7 +152,7 @@ public class SyncAnimWDialogue : MonoBehaviour
 
     private void SetInteraction(bool enabled)
     {
-        foreach (var collider in foodItemColliders)
+        foreach (var collider in colliders)
         {
             if (collider != null)
             {

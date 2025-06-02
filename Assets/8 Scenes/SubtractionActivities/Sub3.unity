@@ -2175,6 +2175,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: choice5
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3dbb0a7452f81a0469bd6544c5b171d7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2845,6 +2850,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: choice4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 88d88e0bf232b71459d403499c14a2f6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3147,7 +3157,7 @@ GameObject:
   - component: {fileID: 2020900354}
   m_Layer: 0
   m_Name: choices
-  m_TagString: Untagged
+  m_TagString: FoodItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

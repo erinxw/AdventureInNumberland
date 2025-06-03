@@ -1,31 +1,73 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class AdditionDialogueManager : MonoBehaviour
 {
-    public Animator talkingAnimator; // Animator for talking animation
-    public Animator tutorialAnimator; // Animator for tutorial animation
-    public GameObject tutorialObject; // Object that appears in second audio
-    public AudioSource[] audioSources; // Array of 3 AudioSources (from separate objects)
-    public float silenceThreshold = 0.02f;
-    public float checkInterval = 0.1f;
+    public AudioSource[] audioSources;
+    public AudioSource[] basketAudios;
+    public AudioSource addFinalAudio;
+    public int totalItems;
+    public Animator revealAnimator;
+    public string revealTriggerName = "ShowChoices";
 
     private int currentAudioIndex = 0;
     private bool isPaused = false;
+    private float silenceThreshold = 0.02f;
+    private float checkInterval = 0.1f;
+    private Collider[] colliders;
+    private bool isPLayingFinalAudio = false;
+    private Queue<AudioSource> basketAudioQueue = new Queue<AudioSource>();
+
+    private int itemsCollected = 0;
+    private bool isBasketAudioPlaying = false;
+    private bool isFinalAudioPlaying = false;
+    private bool hasTriggeredFinalStep = false;
+
+    private void Awake()
+    {
+        GameObject[] foodItems = GameObject.FindGameObjectsWithTag("FoodItem");
+        colliders = foodItems
+            .Select(obj => obj.GetComponent<Collider>())
+            .Where(collider => collider != null)
+            .ToArray();
+    }
 
     void Start()
     {
         PlayNextDialogue();
     }
 
+    void Update()
+    {
+        if (isPLayingFinalAudio && !addFinalAudio.isPlaying)
+        {
+            SetInteraction(true);
+            isPLayingFinalAudio = false;
+        }
+    }
+
     public void PlayNextDialogue()
     {
+        SetInteraction(false); // Disable interaction while playing audio
+
         if (currentAudioIndex < audioSources.Length)
         {
             audioSources[currentAudioIndex].Play();
-            talkingAnimator.speed = 1; // Start talking animation
-
             StartCoroutine(ManageAnimationPauses(audioSources[currentAudioIndex]));
+        }
+    }
+
+    public void PlayAddFinalAudio()
+    {
+        if (addFinalAudio != null)
+        {
+            SetInteraction(false);
+            addFinalAudio.Play();
+            isPLayingFinalAudio = true;
+            isFinalAudioPlaying = true;
+            StartCoroutine(ManageAnimationPauses(addFinalAudio));
         }
     }
 
@@ -37,32 +79,20 @@ public class AdditionDialogueManager : MonoBehaviour
             currentAudioSource.GetOutputData(samples, 0);
             float volume = GetAverageVolume(samples);
 
-            if (volume < silenceThreshold)
-            {
-                if (!isPaused)
-                {
-                    talkingAnimator.speed = 0; // Pause talking animation on silence
-                    isPaused = true;
-                }
-            }
-            else
-            {
-                if (isPaused)
-                {
-                    talkingAnimator.speed = 1; // Resume talking animation when voice resumes
-                    isPaused = false;
-                }
-            }
+            isPaused = volume < silenceThreshold;
 
             yield return new WaitForSeconds(checkInterval);
         }
 
-        talkingAnimator.speed = 0; // Stop animation when audio ends
         currentAudioIndex++;
 
         if (currentAudioIndex < audioSources.Length)
         {
-            PlayNextDialogue(); // Play the next audio
+            PlayNextDialogue();
+        }
+        else
+        {
+            OnAllAudiosFinished();
         }
     }
 
@@ -74,5 +104,95 @@ public class AdditionDialogueManager : MonoBehaviour
             sum += Mathf.Abs(sample);
         }
         return sum / samples.Length;
+    }
+
+    private void SetInteraction(bool enabled)
+    {
+        foreach (var collider in colliders)
+        {
+            if (collider != null)
+            {
+                collider.enabled = enabled;
+            }
+        }
+    }
+
+    public void OnAllAudiosFinished()
+    {
+        if (totalItems == 0 && !hasTriggeredFinalStep)
+        {
+            hasTriggeredFinalStep = true;
+
+            if (revealAnimator != null)
+                revealAnimator.SetTrigger(revealTriggerName);
+        }
+        if (!isBasketAudioPlaying && !isFinalAudioPlaying)
+        {
+            SetInteraction(true);
+        }
+    }
+
+    public void ItemCollected()
+    {
+        SetInteraction(false);
+
+        if (itemsCollected < basketAudios.Length)
+        {
+            basketAudioQueue.Enqueue(basketAudios[itemsCollected]);
+        }
+
+        itemsCollected++;
+
+        if (!isBasketAudioPlaying)
+        {
+            StartCoroutine(PlayBasketAudioQueue());
+        }
+
+        if (itemsCollected >= totalItems && !isFinalAudioPlaying)
+        {
+            StartCoroutine(PlayFinalDialogue());
+        }
+    }
+
+    IEnumerator PlayBasketAudioQueue()
+    {
+        isBasketAudioPlaying = true;
+
+        while (basketAudioQueue.Count > 0)
+        {
+            AudioSource current = basketAudioQueue.Dequeue();
+            yield return StartCoroutine(PlayAudio(current));
+        }
+
+        isBasketAudioPlaying = false;
+
+        if (!isFinalAudioPlaying)
+        {
+            SetInteraction(true);
+        }
+    }
+
+    IEnumerator PlayFinalDialogue()
+    {
+        yield return new WaitForSeconds(0.5f);
+        PlayAddFinalAudio();
+
+        yield return new WaitWhile(() => addFinalAudio.isPlaying);
+
+        if (!hasTriggeredFinalStep && revealAnimator != null)
+        {
+            hasTriggeredFinalStep = true;
+            revealAnimator.SetTrigger(revealTriggerName);
+            Debug.Log("Reveal animation triggered.");
+        }
+    }
+
+    IEnumerator PlayAudio(AudioSource audio)
+    {
+        if (audio != null)
+        {
+            audio.Play();
+            yield return new WaitWhile(() => audio.isPlaying);
+        }
     }
 }

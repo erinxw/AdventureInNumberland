@@ -3,16 +3,18 @@ using UnityEngine;
 public class ItemSnapToBasket : MonoBehaviour
 {
     public GameObject snapPointObject; // Drag it in the Inspector
-    public BasketManager basketManager;
+    public AdditionDialogueManager additionDialogueManager;
     private static int totalSnapped = 0;
     private static int totalItems;
+    private static bool totalInitialized = false;
 
     void Start()
     {
-        if (totalItems == 0)
+        if (!totalInitialized) // Only calculate total items once
         {
             totalItems = GameObject.FindGameObjectsWithTag("FoodItem").Length;
-            Debug.Log("Total food items: " + totalItems);
+            totalInitialized = true;
+            Debug.Log("Total food items initialized: " + totalItems);
         }
     }
 
@@ -20,9 +22,16 @@ public class ItemSnapToBasket : MonoBehaviour
     {
         if (other.CompareTag("Basket"))
         {
-            basketManager.ItemCollected();
-            Debug.Log("Item collected: " + gameObject.name);
-            gameObject.SetActive(false); // Hide the item
+            Debug.Log("Item collided with basket");
+
+            if (additionDialogueManager != null)
+            {
+                additionDialogueManager.ItemCollected();
+            }
+            else
+            {
+                Debug.LogWarning("additionDialogueManager is NOT assigned on " + gameObject.name);
+            }
 
             if (snapPointObject != null)
             {
@@ -31,10 +40,13 @@ public class ItemSnapToBasket : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("SnapPoint not assigned in Inspector!");
+                Debug.LogWarning("SnapPoint not assigned in Inspector for: " + gameObject.name);
             }
 
             totalSnapped++;
+            Debug.Log($"Item snapped. Total snapped: {totalSnapped} / {totalItems}");
+
+            gameObject.SetActive(false); // Hide the item
 
             if (totalSnapped == totalItems)
             {

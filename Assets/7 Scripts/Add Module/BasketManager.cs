@@ -1,61 +1,150 @@
 using UnityEngine;
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 
 public class BasketManager : MonoBehaviour
 {
-    public Animator animator;
+    public Animator talkingAnimator;
+    public AudioSource[] audioSources; // [0]=Intro, [1]=Instruction, [2]=Final
+    public AudioSource[] basketAudios; // Feedback per collected item
     public int totalItems;
-    public AudioSource[] audioSources;
 
     private int itemsCollected = 0;
-    private int currentAudioIndex = 0;
-    private bool isPlayingAudio = false;
-    private Queue<int> audioQueue = new Queue<int>();
+    private Collider[] colliders;
+    private bool isPaused = false;
+    private float silenceThreshold = 0.02f;
+    private float checkInterval = 0.1f;
+
+    private Queue<AudioSource> basketAudioQueue = new Queue<AudioSource>();
+    private bool isBasketAudioPlaying = false;
+    private bool isFinalAudioPlaying = false;
+
+    void Awake()
+    {
+        GameObject[] foodItems = GameObject.FindGameObjectsWithTag("FoodItem");
+        colliders = foodItems
+            .Select(obj => obj.GetComponent<Collider>())
+            .Where(c => c != null)
+            .ToArray();
+    }
 
     void Start()
     {
-        animator.ResetTrigger("ShowChoices");
-        animator.Play("Idle");
+        SetInteraction(false); // Disable interaction at start
+        StartCoroutine(PlayInitialDialogueSequence());
+    }
+
+    void Update()
+    {
+        if (isFinalAudioPlaying && !audioSources[2].isPlaying)
+        {
+            SetInteraction(true);
+            isFinalAudioPlaying = false;
+        }
+    }
+
+    IEnumerator PlayInitialDialogueSequence()
+    {
+        yield return StartCoroutine(PlayAudioWithLipSync(audioSources[0])); // "Welcome..."
+        yield return StartCoroutine(PlayAudioWithLipSync(audioSources[1])); // "Please collect..."
+        SetInteraction(true); // Enable interaction after intro
     }
 
     public void ItemCollected()
     {
-        itemsCollected++;
-        Debug.Log("Item collected! Total: " + itemsCollected);
+        SetInteraction(false); // Disable interaction while feedback plays
 
-        // Queue audio playback
-        if (currentAudioIndex < audioSources.Length)
+        if (itemsCollected < basketAudios.Length)
         {
-            audioQueue.Enqueue(currentAudioIndex);
-            currentAudioIndex++;
+            basketAudioQueue.Enqueue(basketAudios[itemsCollected]);
+        }
 
-            if (!isPlayingAudio)
-            {
-                StartCoroutine(PlayQueuedAudio());
-            }
+        itemsCollected++;
+
+        if (!isBasketAudioPlaying)
+        {
+            StartCoroutine(PlayBasketAudioQueue());
+        }
+
+        // All items collected
+        if (itemsCollected >= totalItems && !isFinalAudioPlaying)
+        {
+            StartCoroutine(PlayFinalDialogue());
         }
     }
 
-    IEnumerator PlayQueuedAudio()
+    IEnumerator PlayBasketAudioQueue()
     {
-        isPlayingAudio = true;
+        isBasketAudioPlaying = true;
 
-        while (audioQueue.Count > 0)
+        while (basketAudioQueue.Count > 0)
         {
-            int index = audioQueue.Dequeue();
-            AudioSource currentAudio = audioSources[index];
-
-            currentAudio.Play();
-            yield return new WaitForSeconds(currentAudio.clip.length);
+            AudioSource current = basketAudioQueue.Dequeue();
+            yield return StartCoroutine(PlayAudioWithLipSync(current));
         }
 
-        isPlayingAudio = false;
+        isBasketAudioPlaying = false;
+        if (!isFinalAudioPlaying) SetInteraction(true);
+    }
 
-        if (itemsCollected >= totalItems && currentAudioIndex >= audioSources.Length)
+    IEnumerator PlayFinalDialogue()
+    {
+        // Wait for any ongoing basket audio
+        while (isBasketAudioPlaying)
+            yield return null;
+
+        SetInteraction(false);
+        isFinalAudioPlaying = true;
+
+        yield return StartCoroutine(PlayAudioWithLipSync(audioSources[2])); // "Great job!"
+        talkingAnimator.SetTrigger("ShowChoices"); // E.g., show buttons/choices
+    }
+
+    IEnumerator PlayAudioWithLipSync(AudioSource audio)
+    {
+        audio.Play();
+        talkingAnimator.SetTrigger("IsTalking");
+
+        while (audio.isPlaying)
         {
-            Debug.Log("All items collected & audio done! Playing animation.");
-            animator.SetTrigger("ShowChoices");
+            float[] samples = new float[256];
+            audio.GetOutputData(samples, 0);
+            float volume = GetAverageVolume(samples);
+
+            if (volume < silenceThreshold && !isPaused)
+            {
+                talkingAnimator.speed = 0;
+                isPaused = true;
+            }
+            else if (volume >= silenceThreshold && isPaused)
+            {
+                talkingAnimator.speed = 1;
+                isPaused = false;
+            }
+
+            yield return new WaitForSeconds(checkInterval);
+        }
+
+        talkingAnimator.speed = 0;
+    }
+
+    float GetAverageVolume(float[] samples)
+    {
+        float sum = 0f;
+        foreach (float s in samples)
+        {
+            sum += Mathf.Abs(s);
+        }
+        return sum / samples.Length;
+    }
+
+    private void SetInteraction(bool enabled)
+    {
+        foreach (var collider in colliders)
+        {
+            if (collider != null)
+                collider.enabled = enabled;
         }
     }
 }

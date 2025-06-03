@@ -475,31 +475,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8493447543729951539, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_TagString
-      value: FoodItem
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.043078505
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.043078505
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.043078505
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.018737
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b1d46426ce9b97c47904632423d0a89e,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -590,6 +565,31 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Basket
       objectReference: {fileID: 0}
+    - target: {fileID: -8493447543729951539, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_TagString
+      value: FoodItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.043078505
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.043078505
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.043078505
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.018737
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -630,10 +630,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 287826184}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b1d46426ce9b97c47904632423d0a89e,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 287826187}
   m_SourcePrefab: {fileID: 100100000, guid: b1d46426ce9b97c47904632423d0a89e, type: 3}
 --- !u!1 &287826178 stripped
 GameObject:
@@ -690,26 +686,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &287826187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 287826178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10c82e6621609ee4ab73bcf4dceb8261, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 287826184}
-  totalItems: 5
-  audioSources:
-  - {fileID: 1593055522}
-  - {fileID: 635426820}
-  - {fileID: 689533948}
-  - {fileID: 1753641371}
-  - {fileID: 1402586306}
 --- !u!1001 &315022277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -924,7 +900,7 @@ GameObject:
   - component: {fileID: 360248186}
   m_Layer: 0
   m_Name: lollipop2
-  m_TagString: Untagged
+  m_TagString: FoodItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -942,7 +918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snapPointObject: {fileID: 792463557}
-  basketManager: {fileID: 287826187}
+  additionDialogueManager: {fileID: 1361788942}
 --- !u!114 &360248187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1211,7 +1187,7 @@ GameObject:
   - component: {fileID: 469689861}
   m_Layer: 0
   m_Name: lollipop4
-  m_TagString: Untagged
+  m_TagString: FoodItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1229,7 +1205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snapPointObject: {fileID: 1383906254}
-  basketManager: {fileID: 287826187}
+  additionDialogueManager: {fileID: 1361788942}
 --- !u!114 &469689862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2902,7 +2878,7 @@ GameObject:
   - component: {fileID: 1198845637}
   m_Layer: 0
   m_Name: lollipop5
-  m_TagString: Untagged
+  m_TagString: FoodItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2920,7 +2896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snapPointObject: {fileID: 1519070189}
-  basketManager: {fileID: 287826187}
+  additionDialogueManager: {fileID: 1361788942}
 --- !u!114 &1198845638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3449,7 +3425,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1361788941}
-  - component: {fileID: 1361788940}
+  - component: {fileID: 1361788942}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -3457,25 +3433,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1361788940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1361788939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b279c8e76829c2f46b591df07aae7f3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  talkingAnimator: {fileID: 0}
-  audioSources:
-  - {fileID: 1249126707}
-  - {fileID: 187023731}
-  - {fileID: 156735430}
-  subFinalAudio: {fileID: 0}
-  eatManager: {fileID: 0}
 --- !u!4 &1361788941
 Transform:
   m_ObjectHideFlags: 0
@@ -3491,6 +3448,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1361788942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361788939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6547ff1c344608c4d90ffb37d2684029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSources:
+  - {fileID: 1249126707}
+  - {fileID: 187023731}
+  basketAudios:
+  - {fileID: 1593055522}
+  - {fileID: 635426820}
+  - {fileID: 689533948}
+  - {fileID: 1753641371}
+  - {fileID: 1402586306}
+  addFinalAudio: {fileID: 156735430}
+  totalItems: 0
+  revealAnimator: {fileID: 287826184}
+  revealTriggerName: ShowChoices
 --- !u!1 &1383906254
 GameObject:
   m_ObjectHideFlags: 0
@@ -3811,7 +3793,7 @@ GameObject:
   - component: {fileID: 1523430086}
   m_Layer: 0
   m_Name: lollipop3
-  m_TagString: Untagged
+  m_TagString: FoodItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3829,7 +3811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snapPointObject: {fileID: 840854923}
-  basketManager: {fileID: 287826187}
+  additionDialogueManager: {fileID: 1361788942}
 --- !u!114 &1523430087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4852,7 +4834,7 @@ GameObject:
   - component: {fileID: 8052720415759563715}
   m_Layer: 0
   m_Name: lollipop1
-  m_TagString: Untagged
+  m_TagString: FoodItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4878,7 +4860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snapPointObject: {fileID: 745249420}
-  basketManager: {fileID: 287826187}
+  additionDialogueManager: {fileID: 1361788942}
 --- !u!114 &8052720415759563716
 MonoBehaviour:
   m_ObjectHideFlags: 0

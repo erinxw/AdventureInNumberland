@@ -348,7 +348,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 285916479}
-  - component: {fileID: 285916478}
+  - component: {fileID: 285916480}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -356,25 +356,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &285916478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 285916477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b279c8e76829c2f46b591df07aae7f3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  talkingAnimator: {fileID: 0}
-  audioSources:
-  - {fileID: 1249126707}
-  - {fileID: 52518377}
-  - {fileID: 333214437}
-  subFinalAudio: {fileID: 0}
-  eatManager: {fileID: 0}
 --- !u!4 &285916479
 Transform:
   m_ObjectHideFlags: 0
@@ -390,6 +371,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &285916480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285916477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6547ff1c344608c4d90ffb37d2684029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSources:
+  - {fileID: 1249126707}
+  - {fileID: 52518377}
+  basketAudios:
+  - {fileID: 1593055522}
+  - {fileID: 635426820}
+  addFinalAudio: {fileID: 333214437}
+  totalItems: 0
+  revealAnimator: {fileID: 287826184}
+  revealTriggerName: ShowChoices
 --- !u!1001 &287826176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -398,31 +401,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8493447543729951539, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_TagString
-      value: FoodItem
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.043078505
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.043078505
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.043078505
-      objectReference: {fileID: 0}
-    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.018737
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b1d46426ce9b97c47904632423d0a89e,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -513,6 +491,31 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Basket
       objectReference: {fileID: 0}
+    - target: {fileID: -8493447543729951539, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_TagString
+      value: FoodItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.043078505
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.043078505
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.043078505
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623566282429774300, guid: 56fa5bd633974ef49815a0fd081691f2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.018737
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -541,10 +544,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 287826184}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b1d46426ce9b97c47904632423d0a89e,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 287826187}
   m_SourcePrefab: {fileID: 100100000, guid: b1d46426ce9b97c47904632423d0a89e, type: 3}
 --- !u!1 &287826178 stripped
 GameObject:
@@ -601,23 +600,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &287826187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 287826178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10c82e6621609ee4ab73bcf4dceb8261, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 287826184}
-  totalItems: 2
-  audioSources:
-  - {fileID: 1593055522}
-  - {fileID: 635426820}
 --- !u!1001 &315022277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3025,12 +3007,12 @@ PrefabInstance:
     - target: {fileID: 5168652223247465421, guid: 01e03a107c2d6094792151555926bdc7,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5168652223247465421, guid: 01e03a107c2d6094792151555926bdc7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8059315084818394294, guid: 01e03a107c2d6094792151555926bdc7,
         type: 3}
@@ -3834,7 +3816,7 @@ GameObject:
   - component: {fileID: 8984865516186266650}
   m_Layer: 0
   m_Name: cookie2mesh
-  m_TagString: Untagged
+  m_TagString: FoodItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3871,7 +3853,7 @@ GameObject:
   - component: {fileID: 7900918346211392545}
   m_Layer: 0
   m_Name: cookie1mesh
-  m_TagString: Untagged
+  m_TagString: FoodItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3950,7 +3932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snapPointObject: {fileID: 142802294}
-  basketManager: {fileID: 287826187}
+  additionDialogueManager: {fileID: 285916480}
 --- !u!33 &8984865516186266649
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4033,7 +4015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snapPointObject: {fileID: 1642059799}
-  basketManager: {fileID: 287826187}
+  additionDialogueManager: {fileID: 285916480}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

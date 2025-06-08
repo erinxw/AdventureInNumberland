@@ -758,8 +758,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Welcome to
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b64975fd2c72d734cb7c4faaadd60316, type: 2}
+  m_sharedMaterial: {fileID: 2599043246173894027, guid: b64975fd2c72d734cb7c4faaadd60316,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1390,7 +1391,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: affa059594145a843b81788037b4ee21,
+      objectReference: {fileID: -1164562487, guid: 60a6c944d9b79aa47966ecfd21e6756a,
         type: 3}
     - target: {fileID: 3232709592864064069, guid: 674499c84b0a7504889e8c868a06e3e2,
         type: 3}

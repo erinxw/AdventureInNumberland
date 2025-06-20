@@ -390,7 +390,7 @@ MonoBehaviour:
   - {fileID: 1593055522}
   - {fileID: 635426820}
   addFinalAudio: {fileID: 333214437}
-  totalItems: 0
+  totalItems: 2
   revealAnimator: {fileID: 287826184}
   revealTriggerName: ShowChoices
 --- !u!1001 &287826176
@@ -1574,7 +1574,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768174158}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9589bdd39905df41adc1bc2bbac7608, type: 3}
   m_Name: 

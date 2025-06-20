@@ -17,13 +17,15 @@ public class AdditionDialogueManager : MonoBehaviour
     private float silenceThreshold = 0.02f;
     private float checkInterval = 0.1f;
     private Collider[] colliders;
-    private bool isPLayingFinalAudio = false;
-    private Queue<AudioSource> basketAudioQueue = new Queue<AudioSource>();
 
-    private int itemsCollected = 0;
+    private bool isPlayingDialogue = false;
     private bool isBasketAudioPlaying = false;
     private bool isFinalAudioPlaying = false;
     private bool hasTriggeredFinalStep = false;
+    private bool isPlayingFinalAudioCheck = false;
+
+    private Queue<AudioSource> basketAudioQueue = new Queue<AudioSource>();
+    private int itemsCollected = 0;
 
     private void Awake()
     {
@@ -41,34 +43,37 @@ public class AdditionDialogueManager : MonoBehaviour
 
     void Update()
     {
-        if (isPLayingFinalAudio && !addFinalAudio.isPlaying)
+        if (isPlayingFinalAudioCheck && !addFinalAudio.isPlaying)
         {
             SetInteraction(true);
-            isPLayingFinalAudio = false;
+            isPlayingFinalAudioCheck = false;
         }
     }
 
     public void PlayNextDialogue()
     {
-        SetInteraction(false); // Disable interaction while playing audio
+        if (isPlayingDialogue || currentAudioIndex >= audioSources.Length) return;
 
-        if (currentAudioIndex < audioSources.Length)
-        {
-            audioSources[currentAudioIndex].Play();
-            StartCoroutine(ManageAnimationPauses(audioSources[currentAudioIndex]));
-        }
+        SetInteraction(false);
+        isPlayingDialogue = true;
+
+        AudioSource currentAudio = audioSources[currentAudioIndex];
+        currentAudio.Play();
+
+        StartCoroutine(ManageAnimationPauses(currentAudio));
     }
 
     public void PlayAddFinalAudio()
     {
-        if (addFinalAudio != null)
-        {
-            SetInteraction(false);
-            addFinalAudio.Play();
-            isPLayingFinalAudio = true;
-            isFinalAudioPlaying = true;
-            StartCoroutine(ManageAnimationPauses(addFinalAudio));
-        }
+        if (addFinalAudio == null) return;
+
+        SetInteraction(false);
+        addFinalAudio.Play();
+
+        isPlayingFinalAudioCheck = true;
+        isFinalAudioPlaying = true;
+
+        StartCoroutine(ManageAnimationPauses(addFinalAudio));
     }
 
     IEnumerator ManageAnimationPauses(AudioSource currentAudioSource)
@@ -78,21 +83,25 @@ public class AdditionDialogueManager : MonoBehaviour
             float[] samples = new float[256];
             currentAudioSource.GetOutputData(samples, 0);
             float volume = GetAverageVolume(samples);
-
             isPaused = volume < silenceThreshold;
 
             yield return new WaitForSeconds(checkInterval);
         }
 
-        currentAudioIndex++;
+        isPlayingDialogue = false;
 
-        if (currentAudioIndex < audioSources.Length)
+        if (audioSources.Contains(currentAudioSource))
         {
-            PlayNextDialogue();
-        }
-        else
-        {
-            OnAllAudiosFinished();
+            currentAudioIndex++;
+
+            if (currentAudioIndex < audioSources.Length)
+            {
+                PlayNextDialogue();
+            }
+            else
+            {
+                OnAllAudiosFinished();
+            }
         }
     }
 
@@ -126,6 +135,7 @@ public class AdditionDialogueManager : MonoBehaviour
             if (revealAnimator != null)
                 revealAnimator.SetTrigger(revealTriggerName);
         }
+
         if (!isBasketAudioPlaying && !isFinalAudioPlaying)
         {
             SetInteraction(true);
@@ -185,6 +195,8 @@ public class AdditionDialogueManager : MonoBehaviour
             revealAnimator.SetTrigger(revealTriggerName);
             Debug.Log("Reveal animation triggered.");
         }
+
+        isFinalAudioPlaying = false;
     }
 
     IEnumerator PlayAudio(AudioSource audio)

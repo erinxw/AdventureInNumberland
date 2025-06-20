@@ -12,6 +12,7 @@ public class CountingTutorialDialogues : MonoBehaviour
     public Button nextButton;                // Button to AR activity
     public float silenceThreshold = 0.02f;   // Volume threshold to detect silence
     public float checkInterval = 0.1f;       // How often to check for silence
+    public bool isDemoMode = false;          // Enable skip for demo purposes
 
     private int currentAudioIndex = 0;
     private bool isPaused = false;
@@ -20,7 +21,17 @@ public class CountingTutorialDialogues : MonoBehaviour
     {
         tutorialObject.SetActive(false);             // Hide tutorial at start
         talkingAnimator.gameObject.SetActive(false); // Hide Luna at start
-        nextButton.interactable = false;             // Disable next button initially
+
+        if (isDemoMode)
+        {
+            nextButton.interactable = true; // Allow skipping
+            nextButton.onClick.AddListener(SkipTutorial);
+        }
+        else
+        {
+            nextButton.interactable = false; // Wait for dialogue to finish
+        }
+
         PlayNextDialogue();
     }
 
@@ -43,7 +54,6 @@ public class CountingTutorialDialogues : MonoBehaviour
                 talkingAnimator.gameObject.SetActive(false);
             }
 
-            // Show tutorial animation only for audio index 1
             if (currentAudioIndex == 1)
             {
                 tutorialObject.SetActive(true);
@@ -58,7 +68,6 @@ public class CountingTutorialDialogues : MonoBehaviour
         }
         else
         {
-            // All dialogues played, enable next button
             nextButton.interactable = true;
         }
     }
@@ -71,7 +80,6 @@ public class CountingTutorialDialogues : MonoBehaviour
             currentAudioSource.GetOutputData(samples, 0);
             float volume = GetAverageVolume(samples);
 
-            // Pause/resume talking animation based on volume
             if (talkingAnimator.gameObject.activeInHierarchy)
             {
                 if (volume < silenceThreshold && !isPaused)
@@ -89,7 +97,6 @@ public class CountingTutorialDialogues : MonoBehaviour
             yield return new WaitForSeconds(checkInterval);
         }
 
-        // Reset animation and move to next dialogue
         if (talkingAnimator.gameObject.activeInHierarchy)
             talkingAnimator.speed = 0;
 
@@ -103,7 +110,7 @@ public class CountingTutorialDialogues : MonoBehaviour
         {
             tutorialObject.SetActive(false);
             talkingAnimator.gameObject.SetActive(false);
-            nextButton.interactable = true; // Enable next button after all dialogues
+            nextButton.interactable = true;
         }
     }
 
@@ -115,5 +122,23 @@ public class CountingTutorialDialogues : MonoBehaviour
             sum += Mathf.Abs(sample);
         }
         return sum / samples.Length;
+    }
+
+    // Skip tutorial immediately (for demo)
+    public void SkipTutorial()
+    {
+        StopAllCoroutines();
+
+        foreach (var audio in audioSources)
+        {
+            if (audio.isPlaying)
+                audio.Stop();
+        }
+
+        tutorialObject.SetActive(false);
+        talkingAnimator.gameObject.SetActive(false);
+        nextButton.interactable = true;
+
+        Debug.Log("Tutorial skipped (demo mode).");
     }
 }
